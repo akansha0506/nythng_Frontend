@@ -5,7 +5,7 @@ import { Camera, Users, Heart, ArrowRight } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
-
+import NythngLogo from "@/assets/svg/newLogo.png";
 import NythngCommunity1 from "@/assets/images/landingPage/NythngCommunity1.png";
 import NythngCommunity2 from "@/assets/images/landingPage/NythngCommunity7.png";
 import NythngCommunity3 from "@/assets/images/landingPage/NythngCommunity2.png";
@@ -61,7 +61,7 @@ const NythngCommunity = () => {
       {/* INNER ALIGNED CONTENT WRAPPER */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          
+
           {/* LEFT COLUMN: Title, Description & CTA */}
           <div className="lg:col-span-4 flex flex-col justify-between items-start py-1">
             <div>
@@ -70,10 +70,16 @@ const NythngCommunity = () => {
               </p>
 
               <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-serif text-[#08353d] leading-tight font-medium">
-                <span className="text-[#0e8b9e] font-semibold">
-                  nythng®
-                </span>{" "}
-                Community
+                <span className="inline-flex items-center align-middle mr-2">
+                  <Image
+                    src={NythngLogo}
+                    alt="nythng"
+                    width={125}
+                    height={40}
+                    className="w-[100px] sm:w-[115px] lg:w-[125px] h-auto object-contain"
+                  />
+                </span>
+                <span>Community</span>
               </h2>
 
               {/* Accent underline */}
@@ -101,7 +107,7 @@ const NythngCommunity = () => {
 
           {/* RIGHT COLUMN: 5 Images Grid + Features Banner */}
           <div className="lg:col-span-8 flex flex-col justify-between gap-6">
-            
+
             {/* Top 5 Images Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
               {images.map((imgSrc, index) => (
@@ -131,11 +137,10 @@ const NythngCommunity = () => {
                 return (
                   <div
                     key={idx}
-                    className={`flex items-start gap-3 ${
-                      idx !== 0
-                        ? "lg:border-l lg:border-[#d2ebed] lg:pl-4"
-                        : ""
-                    }`}
+                    className={`flex items-start gap-3 ${idx !== 0
+                      ? "lg:border-l lg:border-[#d2ebed] lg:pl-4"
+                      : ""
+                      }`}
                   >
                     <div className="w-9 h-9 rounded-full bg-[#deeff1] flex items-center justify-center shrink-0">
                       <Icon className="w-4.5 h-4.5 text-[#0d5965]" />

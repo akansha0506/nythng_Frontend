@@ -660,7 +660,7 @@ const AddressTab = () => {
                               py-1.5
                               text-xs
                               font-medium
-                              text-red-600
+                              text-[#7a1712]
                               transition
                               hover:bg-red-50
                               sm:text-sm

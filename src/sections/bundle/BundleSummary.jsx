@@ -156,7 +156,7 @@ const BundleSummary = ({
             ? "Adding..."
             : selectedProducts.length === 0
             ? "Add products to continue"
-            : "Buy Now"}
+            : "Proceed to Checkout"}
         </button>
       </div>
     </aside>

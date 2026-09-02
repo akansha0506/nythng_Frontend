@@ -40,14 +40,14 @@ const images = [
 function MadeForEveryone() {
   return (
    <section className="relative w-full overflow-hidden py-14">
-   <div className="absolute inset-0 z-0 pointer-events-none">
-           <Image
-             src={bgImage}
-             alt="Background"
-             fill
-             className="w-full h-full object-cover object-center"
-           />
-         </div>
+     <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+         src={bgImage}
+         alt="Background"
+         fill
+         className="w-full h-full object-cover object-center"
+        />
+    </div>
          
   {/* Overlay */}
   {/* <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-white/20 to-[#3a8b88]/10 backdrop-blur-[2px] z-0" /> */}

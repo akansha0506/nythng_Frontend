@@ -149,10 +149,10 @@ const CartSidebar = () => {
                 <img
                   src={emptyCartImage.src}
                   alt="Empty shopping bag"
-                  className="mb-8 w-52"
+                  className="mb-8 w-46"
                 />
 
-                <h2 className="text-center text-3xl font-light text-[#183838]">
+                <h2 className="text-center text-2xl font-light text-[#183838] pb-4">
                   Your Shopping Bag is Empty
                 </h2>
 

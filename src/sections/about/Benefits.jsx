@@ -112,20 +112,8 @@ export default function Benefits() {
               return (
                 <div
                   key={index}
-                  className="
-                    group
-                    relative
-                    rounded-[30px]
-                    p-7
-                    overflow-hidden
-                    bg-white
-                    border border-[#e7efef]
-                    hover:-translate-y-2
-                    transition-all
-                    duration-500
-                    hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)]
-                  "
-                >
+                  className="group relative rounded-[30px] p-7 overflow-hidden bg-white border border-[#e7efef]
+                    hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
                   <span className="absolute right-5 top-4 text-6xl font-bold text-[#355454]/15">
                     0{index + 1}
                   </span>
@@ -143,18 +131,7 @@ export default function Benefits() {
                   </p>
 
                   <div
-                    className="
-                      absolute
-                      bottom-0
-                      left-0
-                      h-[3px]
-                      w-0
-                      bg-[#b79235]
-                      transition-all
-                      duration-500
-                      group-hover:w-full
-                    "
-                  />
+                    className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#b79235] transition-all duration-500 group-hover:w-full"/>
                 </div>
               );
             })}

@@ -27,10 +27,6 @@ export default function BestSeller({
 }) {
   const swiperRef = useRef(null);
 
-  /* =========================================
-     REDUX
-  ========================================= */
-
   const language = useSelector(
     (state) => state.language?.value || "en"
   );
@@ -38,10 +34,6 @@ export default function BestSeller({
   const wishlistIds = useSelector(
     (state) => state.wishlist?.wishlistIds || []
   );
-
-  /* =========================================
-     PRODUCTS
-  ========================================= */
 
   const products = Array.isArray(allProducts)
     ? allProducts
@@ -75,10 +67,6 @@ export default function BestSeller({
         }}
         className="relative z-10 mx-auto w-full max-w-[1380px] px-4 sm:px-8"
       >
-        {/* =========================================
-            HEADER
-        ========================================= */}
-
         <div className="text-center">
           {language === "en" ? (
             <HeadingHighlight
@@ -114,9 +102,7 @@ export default function BestSeller({
           </div>
         </div>
 
-        {/* =========================================
-            SWIPER
-        ========================================= */}
+      {/* swiper */}
 
         <div className="relative mt-8 px-2 sm:px-12">
 
@@ -234,10 +220,8 @@ export default function BestSeller({
             )}
           </Swiper>
         </div>
-
-        {/* =========================================
-            VIEW ALL PRODUCTS
-        ========================================= */}
+        
+        {/* view all products */}
 
         <div className="mt-12 flex justify-center">
           <Link

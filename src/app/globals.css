@@ -696,13 +696,7 @@ body {
   }
 }
 
-
 /* ========================= google translate ============================== */
-
-
-/* =========================================
-   HIDE GOOGLE TRANSLATE DEFAULT UI
-========================================= */
 
 /* Old Google Translate top banner */
 .goog-te-banner-frame.skiptranslate {
@@ -750,11 +744,3 @@ body {
   background-color: transparent !important;
   box-shadow: none !important;
 }
-
-
-
-
-
-
-
-

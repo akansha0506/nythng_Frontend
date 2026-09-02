@@ -88,7 +88,7 @@ export default function Step4({
       {/* Validation Error */}
       {!answers?.subConcerns?.length &&
         errors?.subConcerns && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 text-sm text-[#7a1712]">
             {errors.subConcerns}
           </p>
         )}

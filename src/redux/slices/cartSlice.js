@@ -445,6 +445,7 @@ export const applyCoupon = createAsyncThunk(
     }
   }
 );
+
 // get Recommended coupon
 export const getRecommendedCoupon = createAsyncThunk(
   "cart/getRecommendedCoupon",

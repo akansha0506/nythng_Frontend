@@ -265,7 +265,7 @@
 //               setInputPin("")
 //             }
 //             aria-label="Clear pincode"
-//             className={`absolute right-2 cursor-pointer text-red-600 transition ${
+//             className={`absolute right-2 cursor-pointer text-[#7a1712] transition ${
 //               inputPin
 //                 ? "visible"
 //                 : "invisible"
@@ -835,7 +835,7 @@ const PincodeModal = ({
               text-gray-400
               transition
               hover:bg-gray-100
-              hover:text-red-500
+              hover:text-[#7a1712]
               disabled:invisible
             "
           >
@@ -871,7 +871,7 @@ const PincodeModal = ({
               py-2.5
             "
           >
-            <p className="text-center text-xs font-medium text-red-600 sm:text-sm">
+            <p className="text-center text-xs font-medium text-[#7a1712] sm:text-sm">
               {typeof error === "string"
                 ? error
                 : "Unable to check delivery for this pincode."}

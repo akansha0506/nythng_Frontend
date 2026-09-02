@@ -1,3 +1,656 @@
+// "use client";
+
+// import React, { useReducer, useState } from "react";
+
+// import Image from "next/image";
+// import Link from "next/link";
+
+// import image from "@/assets/images/singUp.png";
+
+// import {
+//   ArrowRight,
+//   Check,
+//   Eye,
+//   EyeOff,
+//   Loader2,
+//   LockKeyhole,
+//   Mail,
+//   Phone,
+//   Sparkles,
+//   UserRound,
+// } from "lucide-react";
+
+// import { useDispatch } from "react-redux";
+// import { toast } from "react-toastify";
+
+// import { signup } from "@/redux/slices/authSlice";
+// import Otp from "@/components/common/OTP";
+
+
+// // =====================================================
+// // INITIAL STATE
+// // =====================================================
+
+// const initialState = {
+//   email: "",
+//   fullName: "",
+//   phoneNumber: "",
+//   password: "",
+//   keepUpdated: true,
+// };
+
+
+// // =====================================================
+// // REDUCER
+// // =====================================================
+
+// const reducer = (state, action) => {
+//   switch (action.type) {
+//     case "email":
+//       return {
+//         ...state,
+//         email: action.payload,
+//       };
+
+//     case "fullName":
+//       return {
+//         ...state,
+//         fullName: action.payload,
+//       };
+
+//     case "phoneNumber": {
+//       const phoneNumber = action.payload;
+
+//       if (phoneNumber.length > 10) {
+//         return state;
+//       }
+
+//       return {
+//         ...state,
+//         phoneNumber: phoneNumber.replace(
+//           /[^0-9]/g,
+//           ""
+//         ),
+//       };
+//     }
+
+//     case "password":
+//       return {
+//         ...state,
+//         password: action.payload,
+//       };
+
+//     case "keepUpdated":
+//       return {
+//         ...state,
+//         keepUpdated: action.payload,
+//       };
+
+//     default:
+//       return state;
+//   }
+// };
+
+
+// // =====================================================
+// // SIGNUP FORM
+// // =====================================================
+
+// export default function SignupForm() {
+//   const [showPassword, setShowPassword] =
+//     useState(false);
+
+//   const [state, setState] = useReducer(
+//     reducer,
+//     initialState
+//   );
+
+//   const [loading, setLoading] = useState(false);
+
+//   const [showOtpDialog, setShowOtpDialog] =
+//     useState(false);
+
+//   const dispatch = useDispatch();
+
+//   const {
+//     email,
+//     fullName,
+//     phoneNumber,
+//     password,
+//     keepUpdated,
+//   } = state;
+
+
+//   // ===================================================
+//   // SIGNUP
+//   // ===================================================
+
+//   const handleSignup = async (e) => {
+//     e.preventDefault();
+
+//     setLoading(true);
+
+//     const userData = {
+//       email,
+//       fullName,
+//       phoneNumber,
+//       password,
+//       keepUpdated,
+//     };
+
+//     try {
+//       const res = await dispatch(
+//         signup(userData)
+//       ).unwrap();
+
+//       if (
+//         res?.success &&
+//         !res?.isVerified
+//       ) {
+//         setShowOtpDialog(true);
+//       }
+//     } catch (error) {
+//       toast.error(
+//         error?.message ||
+//           error ||
+//           "Signup failed"
+//       );
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+
+//   return (
+//     <>
+//       {/* =================================================
+//           MAIN SIGNUP
+//       ================================================= */}
+
+//       <main className="relative h-screen overflow-hidden bg-[#f7fbfb] pt-[70px]">
+
+//         {/* BACKGROUND */}
+
+//         <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
+//           <div className="absolute -left-40 top-10 h-[450px] w-[450px] rounded-full bg-[#61b9b9]/10 blur-[130px]" />
+
+//           <div className="absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-[#d9eeee]/70 blur-[140px]" />
+
+//         </div>
+
+
+//         {/* =================================================
+//             CONTENT
+//         ================================================= */}
+
+//         <section className="relative z-10 mx-auto flex h-[calc(100vh-70px)] w-full max-w-[1400px] items-center px-4 sm:px-6 lg:px-10 xl:px-14">
+
+//           <div className="grid h-full max-h-[720px] w-full items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12 xl:gap-16">
+
+
+//             {/* =================================================
+//                 LEFT IMAGE
+//             ================================================= */}
+
+//             <div className="relative hidden h-[calc(100vh-110px)] max-h-[680px] lg:block">
+
+//               <div className="absolute -left-3 -top-3 h-full w-full rounded-[32px] border border-[#61b9b9]/20" />
+
+//               <div className="relative h-full overflow-hidden rounded-[32px] bg-[#dfeeee] shadow-[0_25px_70px_rgba(51,99,99,0.14)]">
+
+//                 <Image
+//                   src={image}
+//                   alt="Create your account"
+//                   fill
+//                   priority
+//                   className="object-cover object-center"
+//                 />
+
+
+//                 {/* OVERLAY */}
+
+//                 <div className="absolute inset-0 bg-gradient-to-t from-[#123c3d]/80 via-[#123c3d]/5 to-transparent" />
+
+
+//                 {/* TOP BADGE */}
+
+//                 <div className="absolute left-6 top-6">
+
+//                   <div className="flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-xl">
+
+//                     <Sparkles size={14} />
+
+//                     Your beauty, personalized
+
+//                   </div>
+
+//                 </div>
+
+
+//                 {/* BOTTOM CONTENT */}
+
+//                 <div className="absolute bottom-0 left-0 w-full p-7">
+
+//                   <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c9eeee]">
+//                     Join our community
+//                   </p>
+
+//                   <h2 className="text-3xl font-medium leading-[1.1] text-white">
+
+//                     Beauty that begins
+
+//                     <span className="block font-light text-[#d9f5f4]">
+//                       with you.
+//                     </span>
+
+//                   </h2>
+
+//                   <p className="mt-3 max-w-md text-xs leading-5 text-white/75">
+
+//                     Create your account to discover
+//                     products, save your favorites,
+//                     and enjoy a beauty experience
+//                     made for you.
+
+//                   </p>
+
+
+//                   <div className="mt-4 flex flex-wrap gap-2">
+
+//                     <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] text-white backdrop-blur-md">
+
+//                       <Check size={12} />
+
+//                       Save favorites
+
+//                     </div>
+
+
+//                     <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] text-white backdrop-blur-md">
+
+//                       <Check size={12} />
+
+//                       Track orders
+
+//                     </div>
+
+//                   </div>
+
+//                 </div>
+
+//               </div>
+
+//             </div>
+
+
+//             {/* =================================================
+//                 RIGHT FORM
+//             ================================================= */}
+
+//             <div className="flex h-full items-center justify-center lg:justify-end">
+
+//               <div className="w-full max-w-[580px]">
+
+
+//                 {/* HEADER */}
+
+//                 <div className="mb-4">
+
+//                   <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#61b9b9]">
+//                     Create your account
+//                   </p>
+
+//                   <h1 className="primaryText text-3xl font-semibold tracking-[-0.03em]">
+//                     Welcome
+//                   </h1>
+
+//                   <p className="bodyText mt-1.5 text-sm leading-5">
+//                     Join us and discover a personalized
+//                     beauty experience made around you.
+//                   </p>
+
+//                 </div>
+
+
+//                 {/* =================================================
+//                     FORM
+//                 ================================================= */}
+
+//                 <form
+//                   className="space-y-3"
+//                   onSubmit={handleSignup}
+//                 >
+
+//                   {/* NAME + PHONE */}
+
+//                   <div className="grid gap-3 sm:grid-cols-2">
+
+
+//                     {/* FULL NAME */}
+
+//                     <div>
+
+//                       <label
+//                         htmlFor="fullName"
+//                         className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+//                       >
+//                         Full Name
+//                       </label>
+
+//                       <div className="group relative">
+
+//                         <UserRound
+//                           size={16}
+//                           className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+//                         />
+
+//                         <input
+//                           id="fullName"
+//                           type="text"
+//                           placeholder="Your name"
+//                           value={fullName}
+//                           onChange={(e) =>
+//                             setState({
+//                               type: "fullName",
+//                               payload:
+//                                 e.target.value,
+//                             })
+//                           }
+//                           className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-4 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+//                         />
+
+//                       </div>
+
+//                     </div>
+
+
+//                     {/* PHONE */}
+
+//                     <div>
+
+//                       <label
+//                         htmlFor="phoneNumber"
+//                         className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+//                       >
+//                         Phone Number
+//                       </label>
+
+//                       <div className="group relative">
+
+//                         <Phone
+//                           size={16}
+//                           className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+//                         />
+
+//                         <input
+//                           id="phoneNumber"
+//                           type="text"
+//                           value={phoneNumber}
+//                           onChange={(e) =>
+//                             setState({
+//                               type: "phoneNumber",
+//                               payload:
+//                                 e.target.value,
+//                             })
+//                           }
+//                           placeholder="9891848652"
+//                           className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-4 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+//                         />
+
+//                       </div>
+
+//                     </div>
+
+//                   </div>
+
+
+//                   {/* EMAIL */}
+
+//                   <div>
+
+//                     <label
+//                       htmlFor="email"
+//                       className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+//                     >
+//                       Email address
+//                     </label>
+
+//                     <div className="relative">
+
+//                       <Mail
+//                         size={16}
+//                         className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+//                       />
+
+//                       <input
+//                         id="email"
+//                         type="email"
+//                         value={email}
+//                         onChange={(e) =>
+//                           setState({
+//                             type: "email",
+//                             payload:
+//                               e.target.value,
+//                           })
+//                         }
+//                         placeholder="Example@email.com"
+//                         className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-4 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+//                       />
+
+//                     </div>
+
+//                   </div>
+
+
+//                   {/* PASSWORD */}
+
+//                   <div>
+
+//                     <label
+//                       htmlFor="password"
+//                       className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+//                     >
+//                       Password
+//                     </label>
+
+//                     <div className="relative">
+
+//                       <LockKeyhole
+//                         size={16}
+//                         className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+//                       />
+
+//                       <input
+//                         id="password"
+//                         type={
+//                           showPassword
+//                             ? "text"
+//                             : "password"
+//                         }
+//                         placeholder="At least 8 characters"
+//                         value={password}
+//                         onChange={(e) =>
+//                           setState({
+//                             type: "password",
+//                             payload:
+//                               e.target.value,
+//                           })
+//                         }
+//                         className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-12 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+//                       />
+
+
+//                       {/* PASSWORD TOGGLE */}
+
+//                       <button
+//                         type="button"
+//                         onClick={() =>
+//                           setShowPassword(
+//                             (prev) => !prev
+//                           )
+//                         }
+//                         className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+//                         aria-label={
+//                           showPassword
+//                             ? "Hide password"
+//                             : "Show password"
+//                         }
+//                       >
+
+//                         {showPassword ? (
+//                           <EyeOff size={17} />
+//                         ) : (
+//                           <Eye size={17} />
+//                         )}
+
+//                       </button>
+
+//                     </div>
+
+//                   </div>
+
+
+//                   {/* WHATSAPP */}
+
+//                   <label
+//                     htmlFor="whatsapp"
+//                     className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#e1ebeb] bg-[#f8fbfb] px-4 py-2.5"
+//                   >
+
+//                     <div className="relative flex">
+
+//                       <input
+//                         type="checkbox"
+//                         id="whatsapp"
+//                         checked={keepUpdated}
+//                         onChange={(e) =>
+//                           setState({
+//                             type: "keepUpdated",
+//                             payload:
+//                               e.target.checked,
+//                           })
+//                         }
+//                         className="peer h-4 w-4 appearance-none rounded border border-gray-300 bg-white checked:border-[#61b9b9] checked:bg-[#61b9b9]"
+//                       />
+
+//                       <Check
+//                         size={11}
+//                         strokeWidth={3}
+//                         className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-white peer-checked:block"
+//                       />
+
+//                     </div>
+
+//                     <p className="text-xs text-gray-600">
+//                       I agree to receive updates and
+//                       offers via WhatsApp.
+//                     </p>
+
+//                   </label>
+
+
+//                   {/* SIGNUP BUTTON */}
+
+//                   <button
+//                     type="submit"
+//                     disabled={loading}
+//                     className="group flex h-[48px] w-full items-center justify-center rounded-xl bg-[#61b9b9] text-sm font-semibold text-white shadow-[0_10px_25px_rgba(97,185,185,0.25)] transition-all hover:bg-[#4fa5a5] disabled:cursor-not-allowed disabled:bg-gray-400"
+//                   >
+
+//                     {loading ? (
+
+//                       <span className="flex items-center gap-2">
+
+//                         <Loader2
+//                           size={18}
+//                           className="animate-spin"
+//                         />
+
+//                         Signing up...
+
+//                       </span>
+
+//                     ) : (
+
+//                       <span className="flex items-center gap-2">
+
+//                         Create account
+
+//                         <ArrowRight size={17} />
+
+//                       </span>
+
+//                     )}
+
+//                   </button>
+
+//                 </form>
+
+
+//                 {/* DIVIDER */}
+
+//                 <div className="my-3 flex items-center gap-4">
+
+//                   <div className="h-px flex-1 bg-gray-200" />
+
+//                   <span className="text-[10px] uppercase tracking-[0.15em] text-gray-400">
+//                     Or
+//                   </span>
+
+//                   <div className="h-px flex-1 bg-gray-200" />
+
+//                 </div>
+
+
+//                 {/* LOGIN */}
+
+//                 <p className="primaryText text-center text-sm">
+
+//                   Already have an account?{" "}
+
+//                   <Link
+//                     href="/auth/login"
+//                     className="font-semibold text-[#4b9696] hover:underline"
+//                   >
+//                     Log in
+//                   </Link>
+
+//                 </p>
+
+//               </div>
+
+//             </div>
+
+//           </div>
+
+//         </section>
+
+//       </main>
+
+
+//       {/* ====== OTP MODAL =============== */}
+
+//       {showOtpDialog && (
+
+//         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#102f30]/20 px-4 backdrop-blur-md">
+
+//           <Otp
+//             email={email}
+//             onClose={() =>
+//               setShowOtpDialog(false)
+//             }
+//           />
+
+//         </div>
+
+//       )}
+
+//     </>
+//   );
+// }
+
+
 "use client";
 
 import React, { useReducer, useState } from "react";
@@ -27,10 +680,6 @@ import { signup } from "@/redux/slices/authSlice";
 import Otp from "@/components/common/OTP";
 
 
-// =====================================================
-// INITIAL STATE
-// =====================================================
-
 const initialState = {
   email: "",
   fullName: "",
@@ -38,11 +687,6 @@ const initialState = {
   password: "",
   keepUpdated: true,
 };
-
-
-// =====================================================
-// REDUCER
-// =====================================================
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -67,10 +711,7 @@ const reducer = (state, action) => {
 
       return {
         ...state,
-        phoneNumber: phoneNumber.replace(
-          /[^0-9]/g,
-          ""
-        ),
+        phoneNumber: phoneNumber.replace(/[^0-9]/g, ""),
       };
     }
 
@@ -91,14 +732,8 @@ const reducer = (state, action) => {
   }
 };
 
-
-// =====================================================
-// SIGNUP FORM
-// =====================================================
-
 export default function SignupForm() {
-  const [showPassword, setShowPassword] =
-    useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [state, setState] = useReducer(
     reducer,
@@ -110,6 +745,9 @@ export default function SignupForm() {
   const [showOtpDialog, setShowOtpDialog] =
     useState(false);
 
+  // Validation errors
+  const [errors, setErrors] = useState({});
+
   const dispatch = useDispatch();
 
   const {
@@ -120,19 +758,79 @@ export default function SignupForm() {
     keepUpdated,
   } = state;
 
+  // HANDLE FIELD CHANGE
+  
+  const handleFieldChange = (type, value) => {
+    setState({
+      type,
+      payload: value,
+    });
 
-  // ===================================================
-  // SIGNUP
-  // ===================================================
+    // Remove error for current field
+    setErrors((prev) => ({
+      ...prev,
+      [type]: "",
+    }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!fullName.trim()) {
+      newErrors.fullName =
+        "Please enter your full name.";
+    }
+
+    if (!phoneNumber.trim()) {
+      newErrors.phoneNumber =
+        "Please enter your phone number.";
+    } else if (phoneNumber.length !== 10) {
+      newErrors.phoneNumber =
+        "Please enter a valid 10-digit phone number.";
+    }
+    if (!email.trim()) {
+      newErrors.email =
+        "Please enter your email address.";
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        email.trim()
+      )
+    ) {
+      newErrors.email =
+        "Please enter a valid email address.";
+    }
+
+    if (!password.trim()) {
+      newErrors.password =
+        "Please enter your password.";
+    } else if (password.length < 8) {
+      newErrors.password =
+        "Password must be at least 8 characters.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    const isValid = validateForm();
+
+    if (!isValid) {
+      toast.error(
+        "Please fill in all required fields correctly."
+      );
+
+      return;
+    }
+
     setLoading(true);
 
     const userData = {
-      email,
-      fullName,
+      email: email.trim(),
+      fullName: fullName.trim(),
       phoneNumber,
       password,
       keepUpdated,
@@ -150,6 +848,11 @@ export default function SignupForm() {
         setShowOtpDialog(true);
       }
     } catch (error) {
+      console.error(
+        "Signup error:",
+        error
+      );
+
       toast.error(
         error?.message ||
           error ||
@@ -160,189 +863,334 @@ export default function SignupForm() {
     }
   };
 
-
   return (
     <>
-      {/* =================================================
-          MAIN SIGNUP
-      ================================================= */}
-
-      <main className="relative h-screen overflow-hidden bg-[#f7fbfb] pt-[70px]">
-
-        {/* BACKGROUND */}
-
+      <main className="relative box-border h-screen overflow-hidden bg-[#f7fbfb] pt-[107px]">
+    
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
-          <div className="absolute -left-40 top-10 h-[450px] w-[450px] rounded-full bg-[#61b9b9]/10 blur-[130px]" />
-
-          <div className="absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-[#d9eeee]/70 blur-[140px]" />
-
+          <div className="absolute -left-40 top-10 h-[400px] w-[400px] rounded-full bg-[#61b9b9]/10 blur-[120px]" />
+          <div className="absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#d9eeee]/70 blur-[130px] "/>
         </div>
 
+        <section className="relative z-10 mx-auto flex h-full w-full max-w-[1400px] items-center px-4 sm:px-6 lg:px-10 xl:px-14">
+          <div className="grid h-full w-full items-center gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 xl:gap-12">
 
-        {/* =================================================
-            CONTENT
-        ================================================= */}
+            <div className="relative hidden lg:block lg:h-[min(550px,calc(100vh-145px))]">
 
-        <section className="relative z-10 mx-auto flex h-[calc(100vh-70px)] w-full max-w-[1400px] items-center px-4 sm:px-6 lg:px-10 xl:px-14">
+              {/* Decorative Border */}
 
-          <div className="grid h-full max-h-[720px] w-full items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12 xl:gap-16">
+              <div className="absolute -left-3 -top-3 h-full w-full rounded-[30px] border border-[#61b9b9]/20"/>
 
+              {/* Image Container */}
 
-            {/* =================================================
-                LEFT IMAGE
-            ================================================= */}
-
-            <div className="relative hidden h-[calc(100vh-110px)] max-h-[680px] lg:block">
-
-              <div className="absolute -left-3 -top-3 h-full w-full rounded-[32px] border border-[#61b9b9]/20" />
-
-              <div className="relative h-full overflow-hidden rounded-[32px] bg-[#dfeeee] shadow-[0_25px_70px_rgba(51,99,99,0.14)]">
-
+              <div
+                className="
+                  relative
+                  h-full
+                  overflow-hidden
+                  rounded-[30px]
+                  bg-[#dfeeee]
+                  shadow-[0_25px_70px_rgba(51,99,99,0.14)]
+                "
+              >
                 <Image
                   src={image}
                   alt="Create your account"
                   fill
                   priority
+                  sizes="(max-width: 1024px) 0vw, 45vw"
                   className="object-cover object-center"
                 />
 
+                {/* Overlay */}
 
-                {/* OVERLAY */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-[#123c3d]/80
+                    via-[#123c3d]/5
+                    to-transparent
+                  "
+                />
+                <div className="absolute left-5 top-5">
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      rounded-full
+                      border
+                      border-white/30
+                      bg-white/20
+                      px-3
+                      py-1.5
+                      text-[11px]
+                      font-medium
+                      text-white
+                      backdrop-blur-xl
+                    "
+                  >
+                    <Sparkles size={13} />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#123c3d]/80 via-[#123c3d]/5 to-transparent" />
-
-
-                {/* TOP BADGE */}
-
-                <div className="absolute left-6 top-6">
-
-                  <div className="flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-xl">
-
-                    <Sparkles size={14} />
-
-                    Your beauty, personalized
-
+                    <span>
+                      Your beauty, personalized
+                    </span>
                   </div>
-
                 </div>
-
-
-                {/* BOTTOM CONTENT */}
-
-                <div className="absolute bottom-0 left-0 w-full p-7">
-
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c9eeee]">
+                <div
+                  className="
+                    absolute
+                    bottom-0
+                    left-0
+                    w-full
+                    p-6
+                  "
+                >
+                  <p
+                    className="
+                      mb-1.5
+                      text-[9px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.2em]
+                      text-[#c9eeee]
+                    "
+                  >
                     Join our community
                   </p>
 
-                  <h2 className="text-3xl font-medium leading-[1.1] text-white">
-
+                  <h2
+                    className="
+                      text-2xl
+                      font-medium
+                      leading-[1.1]
+                      text-white
+                      xl:text-3xl
+                    "
+                  >
                     Beauty that begins
 
-                    <span className="block font-light text-[#d9f5f4]">
+                    <span
+                      className="
+                        block
+                        font-light
+                        text-[#d9f5f4]
+                      "
+                    >
                       with you.
                     </span>
-
                   </h2>
 
-                  <p className="mt-3 max-w-md text-xs leading-5 text-white/75">
-
+                  <p
+                    className="
+                      mt-2
+                      max-w-md
+                      text-[11px]
+                      leading-5
+                      text-white/75
+                    "
+                  >
                     Create your account to discover
                     products, save your favorites,
                     and enjoy a beauty experience
                     made for you.
-
                   </p>
 
+                  {/* Feature Pills */}
 
-                  <div className="mt-4 flex flex-wrap gap-2">
-
-                    <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] text-white backdrop-blur-md">
-
-                      <Check size={12} />
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <div
+                      className="
+                        flex
+                        items-center
+                        gap-1.5
+                        rounded-full
+                        border
+                        border-white/20
+                        bg-white/10
+                        px-2.5
+                        py-1
+                        text-[10px]
+                        text-white
+                        backdrop-blur-md
+                      "
+                    >
+                      <Check size={11} />
 
                       Save favorites
-
                     </div>
 
-
-                    <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] text-white backdrop-blur-md">
-
-                      <Check size={12} />
+                    <div
+                      className="
+                        flex
+                        items-center
+                        gap-1.5
+                        rounded-full
+                        border
+                        border-white/20
+                        bg-white/10
+                        px-2.5
+                        py-1
+                        text-[10px]
+                        text-white
+                        backdrop-blur-md
+                      "
+                    >
+                      <Check size={11} />
 
                       Track orders
-
                     </div>
-
                   </div>
+                </div>
+              </div>
+            </div>
+            {/* right form */}
+            <div
+              className="
+                flex
+                h-full
+                w-full
+                items-center
+                justify-center
+                lg:justify-end
+              "
+            >
+              <div className="w-full max-w-[540px]">
+                <div
+                  className="
+                    relative
+                    mb-4
+                    h-[160px]
+                    overflow-hidden
+                    rounded-[22px]
+                    sm:h-[190px]
+                    lg:hidden
+                  "
+                >
+                  <Image
+                    src={image}
+                    alt="Create your account"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover object-center"
+                  />
 
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      bg-gradient-to-t
+                      from-[#123c3d]/70
+                      via-transparent
+                      to-transparent
+                    "
+                  />
+
+                  <div className="absolute bottom-4 left-4">
+                    <p className="text-lg font-medium text-white">
+                      Beauty that begins
+                    </p>
+
+                    <p className="mt-0.5 text-sm text-white/75">
+                      with you.
+                    </p>
+                  </div>
                 </div>
 
-              </div>
+                {/* =================================================
+                    HEADER
+                ================================================= */}
 
-            </div>
-
-
-            {/* =================================================
-                RIGHT FORM
-            ================================================= */}
-
-            <div className="flex h-full items-center justify-center lg:justify-end">
-
-              <div className="w-full max-w-[580px]">
-
-
-                {/* HEADER */}
-
-                <div className="mb-4">
-
-                  <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#61b9b9]">
+                <div className="mb-3">
+                  <p
+                    className="
+                      mb-1
+                      text-[9px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.18em]
+                      text-[#61b9b9]
+                    "
+                  >
                     Create your account
                   </p>
 
-                  <h1 className="primaryText text-3xl font-semibold tracking-[-0.03em]">
+                  <h1
+                    className="
+                      primaryText
+                      text-2xl
+                      font-semibold
+                      tracking-[-0.03em]
+                      sm:text-3xl
+                    "
+                  >
                     Welcome
                   </h1>
 
-                  <p className="bodyText mt-1.5 text-sm leading-5">
+                  <p
+                    className="
+                      bodyText
+                      mt-1
+                      text-xs
+                      leading-5
+                      sm:text-sm
+                    "
+                  >
                     Join us and discover a personalized
                     beauty experience made around you.
                   </p>
-
                 </div>
-
 
                 {/* =================================================
                     FORM
                 ================================================= */}
 
                 <form
-                  className="space-y-3"
+                  className="space-y-2.5"
                   onSubmit={handleSignup}
+                  noValidate
                 >
-
-                  {/* NAME + PHONE */}
+                  {/* =================================================
+                      NAME + PHONE
+                  ================================================= */}
 
                   <div className="grid gap-3 sm:grid-cols-2">
-
 
                     {/* FULL NAME */}
 
                     <div>
-
                       <label
                         htmlFor="fullName"
-                        className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+                        className="
+                          primaryText
+                          mb-1
+                          block
+                          text-sm
+                          font-medium
+                          sm:text-[15px]
+                        "
                       >
                         Full Name
                       </label>
 
                       <div className="group relative">
-
                         <UserRound
-                          size={16}
-                          className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                          size={15}
+                          className={`
+                            pointer-events-none
+                            absolute
+                            left-3.5
+                            top-1/2
+                            -translate-y-1/2
+                            ${
+                              errors.fullName
+                                ? "text-red-900"
+                                : "text-gray-400"
+                            }
+                          `}
                         />
 
                         <input
@@ -351,76 +1199,154 @@ export default function SignupForm() {
                           placeholder="Your name"
                           value={fullName}
                           onChange={(e) =>
-                            setState({
-                              type: "fullName",
-                              payload:
-                                e.target.value,
-                            })
+                            handleFieldChange(
+                              "fullName",
+                              e.target.value
+                            )
                           }
-                          className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-4 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+                          autoComplete="name"
+                          className={`
+                            h-[44px]
+                            w-full
+                            rounded-xl
+                            border
+                            bg-white
+                            pl-10
+                            pr-3
+                            text-sm
+                            text-gray-800
+                            outline-none
+                            transition-all
+                            placeholder:text-gray-400
+                            ${
+                              errors.fullName
+                                ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                                : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                            }
+                            focus:ring-4
+                          `}
                         />
-
                       </div>
 
+                      {errors.fullName && (
+                        <p className="mt-1 text-[10px] text-red-900">
+                          {errors.fullName}
+                        </p>
+                      )}
                     </div>
-
 
                     {/* PHONE */}
 
                     <div>
-
                       <label
                         htmlFor="phoneNumber"
-                        className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+                        className="
+                          primaryText
+                          mb-1
+                          block
+                          text-sm
+                          font-medium
+                          sm:text-[15px]
+                        "
                       >
                         Phone Number
                       </label>
 
                       <div className="group relative">
-
                         <Phone
-                          size={16}
-                          className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                          size={15}
+                          className={`
+                            pointer-events-none
+                            absolute
+                            left-3.5
+                            top-1/2
+                            -translate-y-1/2
+                            ${
+                              errors.phoneNumber
+                                ? "text-red-900"
+                                : "text-gray-400"
+                            }
+                          `}
                         />
 
                         <input
                           id="phoneNumber"
                           type="text"
+                          inputMode="numeric"
                           value={phoneNumber}
                           onChange={(e) =>
-                            setState({
-                              type: "phoneNumber",
-                              payload:
-                                e.target.value,
-                            })
+                            handleFieldChange(
+                              "phoneNumber",
+                              e.target.value
+                            )
                           }
                           placeholder="9891848652"
-                          className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-4 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+                          autoComplete="tel"
+                          className={`
+                            h-[44px]
+                            w-full
+                            rounded-xl
+                            border
+                            bg-white
+                            pl-10
+                            pr-3
+                            text-sm
+                            text-gray-800
+                            outline-none
+                            transition-all
+                            placeholder:text-gray-400
+                            ${
+                              errors.phoneNumber
+                                ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                                : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                            }
+                            focus:ring-4
+                          `}
                         />
-
                       </div>
 
+                      {errors.phoneNumber && (
+                        <p className="mt-1 text-[10px] text-red-900">
+                          {errors.phoneNumber}
+                        </p>
+                      )}
                     </div>
-
                   </div>
 
-
-                  {/* EMAIL */}
+                  {/* =================================================
+                      EMAIL
+                  ================================================= */}
 
                   <div>
-
                     <label
                       htmlFor="email"
-                      className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+                      className="
+                        primaryText
+                        mb-1
+                        block
+                        text-sm
+                        font-medium
+                        sm:text-[15px]
+                      "
                     >
                       Email address
                     </label>
 
-                    <div className="relative">
-
+                    <div className="group relative">
                       <Mail
-                        size={16}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                        size={15}
+                        className={`
+                          pointer-events-none
+                          absolute
+                          left-3.5
+                          top-1/2
+                          -translate-y-1/2
+                          ${
+                            errors.email
+                              ? "text-red-900"
+                              : "text-gray-400"
+                          }
+                        `}
                       />
 
                       <input
@@ -428,37 +1354,77 @@ export default function SignupForm() {
                         type="email"
                         value={email}
                         onChange={(e) =>
-                          setState({
-                            type: "email",
-                            payload:
-                              e.target.value,
-                          })
+                          handleFieldChange(
+                            "email",
+                            e.target.value
+                          )
                         }
                         placeholder="Example@email.com"
-                        className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-4 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+                        autoComplete="email"
+                        className={`
+                          h-[44px]
+                          w-full
+                          rounded-xl
+                          border
+                          bg-white
+                          pl-10
+                          pr-3
+                          text-sm
+                          text-gray-800
+                          outline-none
+                          transition-all
+                          placeholder:text-gray-400
+                          ${
+                            errors.email
+                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                              : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                          }
+                          focus:ring-4
+                        `}
                       />
-
                     </div>
 
+                    {errors.email && (
+                      <p className="mt-1 text-[10px] text-red-900">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
 
-
-                  {/* PASSWORD */}
+                  {/* =================================================
+                      PASSWORD
+                  ================================================= */}
 
                   <div>
-
                     <label
                       htmlFor="password"
-                      className="primaryText mb-2 block text-[15px] font-medium sm:text-base"
+                      className="
+                        primaryText
+                        mb-1
+                        block
+                        text-sm
+                        font-medium
+                        sm:text-[15px]
+                      "
                     >
                       Password
                     </label>
 
-                    <div className="relative">
-
+                    <div className="group relative">
                       <LockKeyhole
-                        size={16}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                        size={15}
+                        className={`
+                          pointer-events-none
+                          absolute
+                          left-3.5
+                          top-1/2
+                          -translate-y-1/2
+                          ${
+                            errors.password
+                              ? "text-red-900"
+                              : "text-gray-400"
+                          }
+                        `}
                       />
 
                       <input
@@ -471,17 +1437,35 @@ export default function SignupForm() {
                         placeholder="At least 8 characters"
                         value={password}
                         onChange={(e) =>
-                          setState({
-                            type: "password",
-                            payload:
-                              e.target.value,
-                          })
+                          handleFieldChange(
+                            "password",
+                            e.target.value
+                          )
                         }
-                        className="h-[48px] w-full rounded-xl border border-[#dce7e7] bg-white pl-11 pr-12 text-[15px] outline-none transition-all focus:border-[#61b9b9] focus:ring-4 focus:ring-[#61b9b9]/10 sm:text-base"
+                        autoComplete="new-password"
+                        className={`
+                          h-[44px]
+                          w-full
+                          rounded-xl
+                          border
+                          bg-white
+                          pl-10
+                          pr-11
+                          text-sm
+                          text-gray-800
+                          outline-none
+                          transition-all
+                          placeholder:text-gray-400
+                          ${
+                            errors.password
+                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                              : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                          }
+                          focus:ring-4
+                        `}
                       />
 
-
-                      {/* PASSWORD TOGGLE */}
+                      {/* Password Toggle */}
 
                       <button
                         type="button"
@@ -490,162 +1474,249 @@ export default function SignupForm() {
                             (prev) => !prev
                           )
                         }
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                        className="
+                          absolute
+                          right-3.5
+                          top-1/2
+                          -translate-y-1/2
+                          text-gray-400
+                          transition-colors
+                          hover:text-[#4e9c9c]
+                        "
                         aria-label={
                           showPassword
                             ? "Hide password"
                             : "Show password"
                         }
                       >
-
                         {showPassword ? (
-                          <EyeOff size={17} />
+                          <EyeOff size={16} />
                         ) : (
-                          <Eye size={17} />
+                          <Eye size={16} />
                         )}
-
                       </button>
-
                     </div>
 
+                    {errors.password && (
+                      <p className="mt-1 text-[10px] text-red-900">
+                        {errors.password}
+                      </p>
+                    )}
                   </div>
 
-
-                  {/* WHATSAPP */}
+                  {/* =================================================
+                      WHATSAPP
+                  ================================================= */}
 
                   <label
                     htmlFor="whatsapp"
-                    className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#e1ebeb] bg-[#f8fbfb] px-4 py-2.5"
+                    className="
+                      flex
+                      cursor-pointer
+                      items-center
+                      gap-2.5
+                      rounded-xl
+                      border
+                      border-[#e1ebeb]
+                      bg-[#f8fbfb]
+                      px-3
+                      py-2
+                    "
                   >
-
-                    <div className="relative flex">
-
+                    <div className="relative flex shrink-0">
                       <input
                         type="checkbox"
                         id="whatsapp"
                         checked={keepUpdated}
                         onChange={(e) =>
-                          setState({
-                            type: "keepUpdated",
-                            payload:
-                              e.target.checked,
-                          })
+                          handleFieldChange(
+                            "keepUpdated",
+                            e.target.checked
+                          )
                         }
-                        className="peer h-4 w-4 appearance-none rounded border border-gray-300 bg-white checked:border-[#61b9b9] checked:bg-[#61b9b9]"
+                        className="
+                          peer
+                          h-4
+                          w-4
+                          appearance-none
+                          rounded
+                          border
+                          border-gray-300
+                          bg-white
+                          checked:border-[#61b9b9]
+                          checked:bg-[#61b9b9]
+                        "
                       />
 
                       <Check
-                        size={11}
+                        size={10}
                         strokeWidth={3}
-                        className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-white peer-checked:block"
+                        className="
+                          pointer-events-none
+                          absolute
+                          left-1/2
+                          top-1/2
+                          hidden
+                          -translate-x-1/2
+                          -translate-y-1/2
+                          text-white
+                          peer-checked:block
+                        "
                       />
-
                     </div>
 
-                    <p className="text-xs text-gray-600">
+                    <p className="text-[11px] leading-4 text-gray-600">
                       I agree to receive updates and
                       offers via WhatsApp.
                     </p>
-
                   </label>
 
-
-                  {/* SIGNUP BUTTON */}
+                  {/* =================================================
+                      CREATE ACCOUNT
+                  ================================================= */}
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="group flex h-[48px] w-full items-center justify-center rounded-xl bg-[#61b9b9] text-sm font-semibold text-white shadow-[0_10px_25px_rgba(97,185,185,0.25)] transition-all hover:bg-[#4fa5a5] disabled:cursor-not-allowed disabled:bg-gray-400"
+                    className="
+                      group
+                      flex
+                      h-[44px]
+                      w-full
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-[#61b9b9]
+                      text-sm
+                      font-semibold
+                      text-white
+                      shadow-[0_10px_25px_rgba(97,185,185,0.25)]
+                      transition-all
+                      duration-300
+                      hover:-translate-y-0.5
+                      hover:bg-[#4fa5a5]
+                      hover:shadow-[0_14px_30px_rgba(97,185,185,0.30)]
+                      active:translate-y-0
+                      disabled:cursor-not-allowed
+                      disabled:bg-gray-400
+                      disabled:shadow-none
+                    "
                   >
-
                     {loading ? (
-
                       <span className="flex items-center gap-2">
-
                         <Loader2
-                          size={18}
+                          size={17}
                           className="animate-spin"
                         />
 
                         Signing up...
-
                       </span>
-
                     ) : (
-
                       <span className="flex items-center gap-2">
-
                         Create account
 
-                        <ArrowRight size={17} />
-
+                        <ArrowRight
+                          size={16}
+                          className="
+                            transition-transform
+                            duration-300
+                            group-hover:translate-x-1
+                          "
+                        />
                       </span>
-
                     )}
-
                   </button>
-
                 </form>
 
+                {/* =================================================
+                    DIVIDER
+                ================================================= */}
 
-                {/* DIVIDER */}
-
-                <div className="my-3 flex items-center gap-4">
-
+                <div
+                  className="
+                    my-2.5
+                    flex
+                    items-center
+                    gap-3
+                  "
+                >
                   <div className="h-px flex-1 bg-gray-200" />
 
-                  <span className="text-[10px] uppercase tracking-[0.15em] text-gray-400">
+                  <span
+                    className="
+                      text-[9px]
+                      uppercase
+                      tracking-[0.15em]
+                      text-gray-400
+                    "
+                  >
                     Or
                   </span>
 
                   <div className="h-px flex-1 bg-gray-200" />
-
                 </div>
 
+                {/* =================================================
+                    LOGIN
+                ================================================= */}
 
-                {/* LOGIN */}
-
-                <p className="primaryText text-center text-sm">
-
+                <p
+                  className="
+                    primaryText
+                    text-center
+                    text-xs
+                    sm:text-sm
+                  "
+                >
                   Already have an account?{" "}
 
                   <Link
                     href="/auth/login"
-                    className="font-semibold text-[#4b9696] hover:underline"
+                    className="
+                      font-semibold
+                      text-[#4b9696]
+                      transition-colors
+                      hover:text-[#357979]
+                      hover:underline
+                    "
                   >
                     Log in
                   </Link>
-
                 </p>
-
               </div>
-
             </div>
-
           </div>
-
         </section>
-
       </main>
 
-
-      {/* ====== OTP MODAL =============== */}
+      {/* =========================================================
+          OTP MODAL
+      ========================================================= */}
 
       {showOtpDialog && (
-
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#102f30]/20 px-4 backdrop-blur-md">
-
+        <div
+          className="
+            fixed
+            inset-0
+            z-50
+            flex
+            h-full
+            w-full
+            items-center
+            justify-center
+            bg-[#102f30]/20
+            px-4
+            backdrop-blur-md
+          "
+        >
           <Otp
             email={email}
             onClose={() =>
               setShowOtpDialog(false)
             }
           />
-
         </div>
-
       )}
-
     </>
   );
 }

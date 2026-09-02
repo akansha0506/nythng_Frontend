@@ -26,7 +26,7 @@ const innovativeProducts = [
   },
   {
     number: "03",
-    name: "HOMEØ HEAL",
+    name: "HOMEO HEAL",
     subtitle: "Skin Barrier Serum",
     image: mv5,
     description:
@@ -101,17 +101,6 @@ export default function InnovativeFirsts() {
     }, 1150);
   };
 
-
-  /* =====================================================
-     NEXT
-
-     03 → 04
-     04 → 05
-     05 → 01
-     01 → 02
-     02 → 03
-  ===================================================== */
-
   const goNext = () => {
     if (isAnimating) return;
 
@@ -130,11 +119,7 @@ export default function InnovativeFirsts() {
     }, 1150);
   };
 
-
-  /* =====================================================
-     AUTO SLIDER
-  ===================================================== */
-
+  // auto slider
   const startAutoSlide = () => {
     clearInterval(autoSlideRef.current);
 
@@ -153,9 +138,7 @@ export default function InnovativeFirsts() {
   }, []);
 
 
-  /* =====================================================
-     MANUAL PREVIOUS
-  ===================================================== */
+//  manual previous
 
   const handlePrevious = () => {
     clearInterval(autoSlideRef.current);
@@ -167,10 +150,7 @@ export default function InnovativeFirsts() {
     }, 1200);
   };
 
-
-  /* =====================================================
-     MANUAL NEXT
-  ===================================================== */
+  // manual text
 
   const handleNext = () => {
     clearInterval(autoSlideRef.current);
@@ -182,11 +162,7 @@ export default function InnovativeFirsts() {
     }, 1200);
   };
 
-
-  /* =====================================================
-     POINTER DOWN
-  ===================================================== */
-
+  // pointer down
   const handlePointerDown = (event) => {
     if (isAnimating) return;
 
@@ -195,10 +171,7 @@ export default function InnovativeFirsts() {
     startX.current = event.clientX;
   };
 
-
-  /* =====================================================
-     POINTER UP
-  ===================================================== */
+  // pointer up
 
   const handlePointerUp = (event) => {
     if (!isDragging) return;
@@ -211,16 +184,12 @@ export default function InnovativeFirsts() {
       return;
     }
 
-    /*
-     * Swipe LEFT
-     */
+    /* Swipe LEFT */
     if (difference < 0) {
       handleNext();
     }
 
-    /*
-     * Swipe RIGHT
-     */
+    /* Swipe RIGHT */
     else {
       handlePrevious();
     }
@@ -273,11 +242,6 @@ export default function InnovativeFirsts() {
 
       <div className="innovative-container">
 
-
-        {/* =================================================
-            LEFT INTRO
-        ================================================= */}
-
         <div className="innovative-intro">
 
           <div className="innovative-intro-line">
@@ -309,12 +273,7 @@ export default function InnovativeFirsts() {
           </p>
 
         </div>
-
-
-        {/* =================================================
-            PRODUCT STAGE
-        ================================================= */}
-
+        {/* product stage */}
         <div
           className={`innovative-stage ${isDragging ? "is-dragging" : ""
             }`}
@@ -322,12 +281,7 @@ export default function InnovativeFirsts() {
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerCancel}
         >
-
-
-          {/* =================================================
-              FIXED NUMBERS
-          ================================================= */}
-
+        {/* fixed number */}
           <div className="innovative-fixed-numbers">
 
             <span className="fixed-number fixed-number-01">
@@ -350,21 +304,10 @@ export default function InnovativeFirsts() {
               05
             </span>
 
-          </div>
+          </div>  
 
-
-          {/* =================================================
-              ARC
-          ================================================= */}
-
+            {/* arc */}
           <div className="innovative-arc" />
-
-
-          {/* =================================================
-              PRODUCTS
-
-              Bottle + Content are ONE ELEMENT
-          ================================================= */}
 
           <div className="innovative-products">
 
@@ -419,12 +362,7 @@ export default function InnovativeFirsts() {
             })}
 
           </div>
-
-
-          {/* =================================================
-              CONTROLS
-          ================================================= */}
-
+          {/* controls */}
           <div className="innovative-controls">
 
             <button
@@ -436,7 +374,7 @@ export default function InnovativeFirsts() {
               }}
               onClick={(event) => {
                 event.stopPropagation();
-                handlePrevious();
+                 handleNext();
               }}
             >
               ←
@@ -467,7 +405,7 @@ export default function InnovativeFirsts() {
               }}
               onClick={(event) => {
                 event.stopPropagation();
-                handleNext();
+                 handlePrevious();
               }}
             >
               →
@@ -477,10 +415,6 @@ export default function InnovativeFirsts() {
 
         </div>
 
-
-        {/* =================================================
-            PROMISES
-        ================================================= */}
 
         <div className="innovative-promises">
 

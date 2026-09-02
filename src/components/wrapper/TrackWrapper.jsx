@@ -386,7 +386,7 @@
 //                   String(paymentStatus)
 //                     .toLowerCase()
 //                     .includes("fail")
-//                     ? "bg-red-50 text-red-600"
+//                     ? "bg-red-50 text-[#7a1712]"
 //                     : "bg-green-50 text-green-700"
 //                 }`}
 //               >

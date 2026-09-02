@@ -15,10 +15,10 @@ import {
 import bgImage from "@/assets/images/new_images/section_bg.png";
 import nythngLogo from "@/assets/svg/newLogo.png";
 
-import testimonial3 from "@/assets/images/profile/testimonial3.png";
-import testimonial4 from "@/assets/images/profile/testimonial4.png";
+import testimonial3 from "@/assets/images/profile/profile4.jpg";
+import testimonial4 from "@/assets/images/profile/profile3.jpg";
 import testimonial1 from "@/assets/images/profile/profile.png";
-import testimonial2 from "@/assets/images/profile/profileImg6.png";
+import testimonial2 from "@/assets/images/profile/profile2.png";
 
 const testimonials = [
   {

@@ -13,6 +13,7 @@ import NythngCommunity from "@/sections/home/NythngCommunity";
 import VideoTestimonial from "@/sections/home/VideoTestimonial";
 import AiBanner from "../layout/AiBanner";
 import WhoWe from "@/sections/home/WhoWe";
+import HomeSplash from "../common/HomeSplash";
 // import EverythingGood from "@/sections/home/EverythingGood";
 
 
@@ -21,24 +22,26 @@ function HomeWrapper() {
    const dispatch = useDispatch();
    const allCategoryProduct = useSelector((state) => state.product.allCategoryProduct);
    console.log("allCategoryProduct",allCategoryProduct)
-  useEffect(() => {
-    const fetch = async () => {
-      // setLoading(true);
-      try {
-        await dispatch(fetchAllCategoryProduct()).unwrap();
-      } catch (error) {
-        console.log(error);
-      } finally {
-        // setLoading(false);
-      }
-    };
+    useEffect(() => {
+      const fetch = async () => {
+        // setLoading(true);
+        try {
+          await dispatch(fetchAllCategoryProduct()).unwrap();
+        } catch (error) {
+          console.log(error);
+        } finally {
+          // setLoading(false);
+        }
+      };
 
-    if (!allCategoryProduct.length) {
-      fetch();
-    }
-  }, [dispatch, allCategoryProduct.length]);
+      if (!allCategoryProduct.length) {
+        fetch();
+      }
+    }, [dispatch, allCategoryProduct.length]);
+    
   return (
     <>
+    <HomeSplash>
       <Hero />
       <WhoWe />
       <Whychoose />
@@ -51,6 +54,7 @@ function HomeWrapper() {
       <NythngCommunity />
       <VideoTestimonial />
       <AiBanner />
+      </HomeSplash>
     </>
   );
 }

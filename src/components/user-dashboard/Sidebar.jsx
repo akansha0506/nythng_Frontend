@@ -184,7 +184,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
             items-center
             justify-center
             gap-3
-            text-red-600
+            text-[#7A1712]
             hover:bg-red-50
             transition
             cursor-pointer
@@ -226,7 +226,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         {/* Mobile Logout */}
         <button
           onClick={handleLogout}
-          className="flex flex-col items-center text-xs text-red-500"
+          className="flex flex-col items-center text-xs text-[#7a1712]"
         >
           <LogOut className="w-5 h-5 mb-1" />
 

@@ -1,9 +1,5 @@
-import React from 'react'
+import Fadeloader from "@/components/common/Fadeloader";
 
-function loading() {
-  return (
-    <div>loading</div>
-  )
+export default function Loading() {
+  return <Fadeloader />;
 }
-
-export default loading

@@ -62,7 +62,7 @@ export default function Step5({
       {/* Validation Error */}
       {!answers?.lifestyle?.length &&
         errors?.lifestyle && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 text-sm text-[#7a1712]">
             {errors.lifestyle}
           </p>
         )}

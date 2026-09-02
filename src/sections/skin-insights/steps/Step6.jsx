@@ -67,7 +67,7 @@ export default function Step6({
       {/* Validation Error */}
       {!answers?.routineLevel &&
         errors?.routineLevel && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 text-sm text-[#7a1712]">
             {errors.routineLevel}
           </p>
         )}

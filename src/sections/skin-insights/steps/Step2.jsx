@@ -22,17 +22,9 @@ export default function Step2({
       {...pageVariants}
       className="space-y-4"
     >
-      {/* =====================================================
-          HEADING
-      ====================================================== */}
-
       <h2 className="text-xl font-medium">
         What best describes your skin type?
       </h2>
-
-      {/* =====================================================
-          SKIN TYPE OPTIONS
-      ====================================================== */}
 
       <div className="grid gap-3 md:grid-cols-2">
         {SKIN_TYPES.map((skinType) => {
@@ -103,7 +95,7 @@ export default function Step2({
       ====================================================== */}
 
       {!answers?.skinType && errors?.skinType && (
-        <p className="mt-1 text-sm text-red-500">
+        <p className="mt-1 text-sm text-[#7a1712]">
           {errors.skinType}
         </p>
       )}

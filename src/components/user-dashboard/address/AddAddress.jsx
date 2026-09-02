@@ -521,7 +521,7 @@ const AddAddress = ({ setActiveAdd }) => {
               <div
                 className={`justify-center items-center flex relative ${
                   postalCodeError
-                    ? "border border-red-500 rounded-lg"
+                    ? "border border-red-900 rounded-lg"
                     : ""
                 }`}
               >
@@ -537,7 +537,7 @@ const AddAddress = ({ setActiveAdd }) => {
                 />
 
                 {postalCodeError && (
-                  <p className="text-red-500 text-sm mt-1 absolute right-2 flex items-center gap-1">
+                  <p className="text-[#7a1712] text-sm mt-1 absolute right-2 flex items-center gap-1">
                     <Info size={18} />
                   </p>
                 )}

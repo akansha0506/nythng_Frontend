@@ -255,7 +255,7 @@ const Otp = ({
         ====================================== */}
 
         {error && (
-          <div className="text-center text-sm text-red-500">
+          <div className="text-center text-sm text-[#7a1712]">
             {error}
           </div>
         )}

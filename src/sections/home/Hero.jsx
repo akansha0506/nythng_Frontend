@@ -10,23 +10,6 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-const stats = [
-  {
-    icon: Droplet,
-    value: "98%",
-    label: "Improved Hydration",
-  },
-  {
-    icon: Sparkles,
-    value: "95%",
-    label: "Better Skin Texture",
-  },
-  {
-    icon: ShieldCheck,
-    value: "93%",
-    label: "Stronger Skin Barrier",
-  },
-];
 
 export default function HeroSection() {
 //   const dispatch = useDispatch();
@@ -68,7 +51,8 @@ export default function HeroSection() {
 
         {/* Hero Content */}
 
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-between gap-10 px-6 pt-8 sm:px-8 lg:flex-row lg:gap-12 lg:px-10">
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center 
+        justify-between gap-10 px-6 pt-8 sm:px-8 lg:flex-row lg:gap-12 lg:px-10">
 
           {/* Left */}
 
@@ -112,38 +96,118 @@ export default function HeroSection() {
 
           {/* Right Stats */}
 
-          {/*
-          <div className="flex w-full justify-center lg:w-auto lg:justify-end">
-            <div className="w-full max-w-sm space-y-6 rounded-3xl border border-white/40 bg-white/30 p-8 shadow-xl backdrop-blur-md">
-              {stats.map((item, index) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={index}
-                    className="flex items-center gap-4"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1e4f4f]/10">
-                      <Icon className="h-6 w-6 text-[#1e4f4f]" />
-                    </div>
-
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-bold text-[#1e4f4f]">
-                        {item.value}
-                      </span>
-
-                      <span className="text-sm font-medium text-[#203639]/80">
-                        {item.label}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          */}
         </div>
       </section>
     </>
   );
 }
+
+
+
+// "use client";
+
+// import { useEffect } from "react";
+// import Link from "next/link";
+// // import { useDispatch, useSelector } from "react-redux";
+// import {
+//   ArrowRight,
+//   Droplet,
+//   Sparkles,
+//   ShieldCheck,
+// } from "lucide-react";
+// import { useSelector } from "react-redux";
+// import SecondaryButton from "@/components/ui/SecondaryButton";
+
+// const stats = [
+//   {
+//     icon: Droplet,
+//     value: "98%",
+//     label: "Improved Hydration",
+//   },
+//   {
+//     icon: Sparkles,
+//     value: "95%",
+//     label: "Better Skin Texture",
+//   },
+//   {
+//     icon: ShieldCheck,
+//     value: "93%",
+//     label: "Stronger Skin Barrier",
+//   },
+// ];
+
+// export default function HeroSection() {
+//  const language = useSelector(
+//     (state) => state.language.value
+//   );
+
+
+//   return (
+//     <>
+//       {/* Hero */}
+
+//           <div className="relative h-[100vh] w-full overflow-hidden bg-[#A08E83]">
+
+//         {/* Background Image */}
+//         {/* <Image
+//           src={bg}
+//           alt="Skin analysis"
+//           fill
+//           priority
+//           sizes="100vw"
+//           className="object-cover object-center"
+//         /> */}
+//         <video
+//           src="/videos/skin-analysis.mp4"
+//           autoPlay
+//           loop
+//           muted
+//           playsInline
+//           className="absolute inset-0 w-full h-full object-cover object-center"
+//         />
+
+//         {/* Overlay */}
+//         <div className="absolute inset-0 bg-gradient-to-r from-[#74b8c2]/40 via-[#A08E83]/20 to-transparent" />
+
+//         {/* Hero Content */}
+//         <div className="relative z-10 flex h-full w-full items-center">
+
+//           <div className="w-full px-8 md:w-[50%] md:px-12 lg:w-[45%] lg:px-16">
+
+//             {/* Label */}
+//             <p className="bodyText mb-3 inline-block rounded-full bg-white/70 px-4 py-1">
+//               # SCIENCE + NATURE + YOU
+//             </p>
+
+//             {/* Heading */}
+//             <h1
+//               className={
+//                 language === "en"
+//                   ? "text-3xl text-[#1a4747] md:text-6xl"
+//                   : "text-2xl leading-tight text-[#1a4747] md:text-3xl"
+//               }
+//             >
+//               Nothing Extra
+//             </h1>
+
+//             <h1
+//               className={
+//                 language === "en"
+//                   ? "text-3xl italic text-[#2a7879] md:text-5xl"
+//                   : "text-2xl leading-tight text-[#2a7879] md:text-3xl"
+//               }
+//             >
+//               Everything Essential
+//             </h1>
+
+//             {/* Description */}
+//             <p className="bodyText mb-8 mt-4 w-[95%] font-medium">
+//               Simplifying skincare with clarity, so you can choose better and unlock your best self.
+//             </p>
+            
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }

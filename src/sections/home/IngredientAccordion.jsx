@@ -1,189 +1,3 @@
-// "use client";
-
-// import {
-//   Accordion,
-//   AccordionItem,
-//   AccordionTrigger,
-//   AccordionContent,
-// } from "@/components/ui/accordion";
-
-// import LearnMoreButton from "@/components/ui/LearnMoreButton";
-// import SecondaryButton from "@/components/ui/SecondaryButton";
-
-// import { useState } from "react";
-// import Image from "next/image";
-
-// import smartIndgreadient from "@/assets/images/landingPage/smart indgreadient.png";
-
-// export default function IngredientAccordionSection() {
-//   const [openItem, setOpenItem] = useState("");
-
-//   const handleAccordionToggle = (itemId) => {
-//     setOpenItem(openItem === itemId ? "" : itemId);
-//   };
-
-//   const data = [
-//     {
-//       id: "1",
-//       title: "Advanced Nano-Vesicles Technology",
-//       content: (
-//         <>
-//           Our serums use advanced nano-vesicles, delivering actives deep into
-//           skin for rare precision, unmatched absorption, and transformative
-//           results.
-
-//           <br />
-//           <br />
-
-//           Boosts hydration retention by 2x
-//           <br />
-//           Contains Hyaluronic Acid + Niacinamide
-//           <br />
-//           Perfect for dry or dull skin types
-//         </>
-//       ),
-//     },
-//     {
-//       id: "2",
-//       title: "Proven Formulas, Real Results",
-//       content: (
-//         <>
-//           Our dermatologist-tested products are backed by science and loved by
-//           users.
-
-//           <br />
-//           <br />
-
-//           Clinically validated in independent trials
-//           <br />
-//           Designed to target real skin concerns
-//           <br />
-//           Formulated for sensitive skin
-//         </>
-//       ),
-//     },
-//     {
-//       id: "3",
-//       title: "Planet-Conscious Beauty",
-//       content: (
-//         <>
-//           Sustainability is at the core of nythng. We use clean, vegan, and
-//           cruelty-free ingredients.
-
-//           <br />
-//           <br />
-
-//           Eco-friendly packaging
-//           <br />
-//           No microplastics or harmful chemicals
-//           <br />
-//           100% cruelty-free & vegan
-//         </>
-//       ),
-//     },
-//   ];
-
-//   return (
-//     <>
-//       {/* ================= Desktop ================= */}
-
-//       <div className="hidden md:flex flex-row justify-center items-start gap-8 h-50 pb-6">
-//         <div className="w-1/2 flex flex-col gap-4 justify-between items-start h-full">
-//           <p className="xl:text-xl bodyText">
-//             We deliver science-backed solutions your skin can trust.
-//             Ready to solve your skin struggles? Start with our shop.
-//           </p>
-
-//           <LearnMoreButton to="/Blogs" />
-//         </div>
-
-//         <div className="h-full w-1/2 overflow-hidden rounded-2xl">
-//           <Image
-//             src={smartIndgreadient}
-//             alt=""
-//             className="w-full h-full object-cover"
-//           />
-//         </div>
-//       </div>
-
-//       {/* ================= Mobile ================= */}
-
-//       <div className="md:hidden mb-6">
-//         <div className="rounded-[28px] bg-[#F6FBFB] border border-[#E6ECEC] shadow-sm p-5">
-//           <div className="flex gap-4 items-center">
-//             <div className="flex-1">
-//               <p className="bodyText text-[15px] leading-8">
-//                 We deliver science-backed solutions your skin can trust.
-//                 Ready to solve your skin struggles? Start with our shop.
-//               </p>
-
-//               <div className="mt-5">
-//                 <LearnMoreButton to="/Blogs" />
-//               </div>
-//             </div>
-
-//             <div className="w-28 h-32 rounded-2xl overflow-hidden shrink-0">
-//               <Image
-//                 src={smartIndgreadient}
-//                 alt=""
-//                 className="w-full h-full object-cover"
-//               />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* ================= Accordion ================= */}
-
-//       <Accordion
-//         type="single"
-//         collapsible
-//         value={openItem}
-//         onValueChange={handleAccordionToggle}
-//         className="space-y-3 md:space-y-0"
-//       >
-//         {data.map((item, index) => (
-//           <AccordionItem
-//             key={item.id}
-//             value={item.id}
-//             className={`
-//               bg-white
-//               border
-//               border-[#E5E7EB]
-//               rounded-2xl
-//               shadow-sm
-//               md:shadow-none
-//               md:rounded-none
-//               md:border-x-0
-//               md:border-b
-//               md:border-gray-300
-//               ${index === 0 ? "md:border-t" : ""}
-//             `}
-//           >
-//             <AccordionTrigger
-//               className="px-5 py-5 text-left font-normal primaryText hover:no-underline"
-//               accordionIcon="bg-[#61b9b9] text-white!"
-//             >
-//               <div className="flex w-full justify-between items-center text-lg md:text-xl">
-//                 {item.title}
-//               </div>
-//             </AccordionTrigger>
-
-//             <AccordionContent className="bodyText text-sm md:text-base px-5 pb-5">
-//               {item.content}
-//             </AccordionContent>
-//           </AccordionItem>
-//         ))}
-//       </Accordion>
-
-//       {/* ================= Button ================= */}
-
-//       <div className="mt-8 flex justify-center md:justify-end">
-//         <SecondaryButton text="Our Story" to="/about" />
-//       </div>
-//     </>
-//   );
-// }
 
 "use client";
 
@@ -330,7 +144,7 @@ export default function IngredientAccordionSection() {
               lg:mt-8
             "
           >
-            <LearnMoreButton to="/Blogs" />
+            <LearnMoreButton to="/blogs" />
           </div>
         </div>
 
@@ -400,10 +214,9 @@ export default function IngredientAccordionSection() {
               md:border-b
               md:border-[#D7DFE0]
 
-              ${
-                index === 0
-                  ? "md:border-t"
-                  : ""
+              ${index === 0
+                ? "md:border-t"
+                : ""
               }
             `}
           >

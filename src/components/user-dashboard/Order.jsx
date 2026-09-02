@@ -234,7 +234,7 @@ const OrderCard = ({ order }) => {
               order.orderStatus === "delivered"
                 ? "bg-green-100 text-[#0E7A00]"
                 : order.orderStatus === "cancelled"
-                ? "bg-red-100 text-red-800"
+                ? "bg-red-100 text-red-900"
                 : "bg-[#1D890733] text-[#3A3A3A]"
             }
             text-sm px-3 w-25 mb-2 py-0.5 h-6 rounded-full shadow-md flex items-center justify-center min-w-[100px] capitalize
@@ -281,7 +281,7 @@ const OrderCard = ({ order }) => {
             {order.orderStatus === "pending" &&
               payment.method === "cod" && (
                 <button
-                  className="hover:bg-[#da1c22] bg-[#e5484d] text-white text-sm px-4 py-2 rounded-full cursor-pointer disabled:cursor-not-allowed"
+                  className="hover:bg-[#610c04] bg-[#7A1712] text-white text-sm px-4 py-2 rounded-full cursor-pointer disabled:cursor-not-allowed"
                   onClick={handleCancel}
                   disabled={isCanceling}
                 >

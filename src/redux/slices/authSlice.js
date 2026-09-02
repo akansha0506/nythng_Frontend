@@ -35,6 +35,20 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
+// export const loginUser = createAsyncThunk(
+//   "/auth/loginUser",
+//   async ({ email, password }, { rejectWithValue }) => {
+//     try {
+//       const res = await api.post("/auth/login", { email, password });
+//       return res.data;
+//     } catch (error) {
+//       return rejectWithValue(
+//         error?.response.data.message || "Failed to log in"
+//       );
+//     }
+//   }
+// );
+
 export const loginUser = createAsyncThunk(
   "/auth/loginUser",
   async ({ email, password }, { rejectWithValue }) => {
@@ -43,7 +57,10 @@ export const loginUser = createAsyncThunk(
       return res.data;
     } catch (error) {
       return rejectWithValue(
-        error?.response.data.message || "Failed to log in"
+        error?.response?.data?.message ||
+          error?.response?.data?.error ||
+          error?.response?.data?.msg ||
+          "Invalid credentials"
       );
     }
   }

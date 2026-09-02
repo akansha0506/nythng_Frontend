@@ -15,6 +15,7 @@ import {
 
 import {
   addToCart,
+  toggleSidebar,
 } from "@/redux/slices/cartSlice";
 
 import ComboCard from "@/sections/bundle/ComboCard";
@@ -37,9 +38,7 @@ const BrandCombos = () => {
         state.product.allProductsForSearch
     );
 
-  // ==========================================
-  // PRODUCTS
-  // ==========================================
+  // products
 
   const allProducts = useMemo(
     () =>
@@ -47,9 +46,7 @@ const BrandCombos = () => {
     [allProductsForSearch]
   );
 
-  // ==========================================
-  // FETCH PRODUCTS
-  // ==========================================
+  // fetch products
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -68,9 +65,6 @@ const BrandCombos = () => {
     fetchProducts();
   }, [dispatch]);
 
-  // ==========================================
-  // HELPERS
-  // ==========================================
 
   const normalizeText = (value) =>
     String(value || "")
@@ -151,9 +145,7 @@ const BrandCombos = () => {
       );
   };
 
-  // ==========================================
-  // BRAND COMBOS
-  // ==========================================
+  // brand combos
 
   const brandCombos = useMemo(() => {
     return allProducts
@@ -202,9 +194,7 @@ const BrandCombos = () => {
       }));
   }, [allProducts]);
 
-  // ==========================================
-  // ADD COMBO
-  // ==========================================
+  // add combo
 
   const addCombo = (combo) => {
     setSelectedCombos((prev) => {
@@ -217,10 +207,10 @@ const BrandCombos = () => {
         return prev.map((item) =>
           item.id === combo.id
             ? {
-                ...item,
-                quantity:
-                  item.quantity + 1,
-              }
+              ...item,
+              quantity:
+                item.quantity + 1,
+            }
             : item
         );
       }
@@ -235,9 +225,7 @@ const BrandCombos = () => {
     });
   };
 
-  // ==========================================
-  // DECREASE
-  // ==========================================
+  // decrease
 
   const decreaseCombo = (
     comboId
@@ -247,10 +235,10 @@ const BrandCombos = () => {
         .map((item) =>
           item.id === comboId
             ? {
-                ...item,
-                quantity:
-                  item.quantity - 1,
-              }
+              ...item,
+              quantity:
+                item.quantity - 1,
+            }
             : item
         )
         .filter(
@@ -259,11 +247,6 @@ const BrandCombos = () => {
         )
     );
   };
-
-  // ==========================================
-  // REMOVE
-  // ==========================================
-
   const removeCombo = (
     comboId
   ) => {
@@ -275,17 +258,11 @@ const BrandCombos = () => {
     );
   };
 
-  // ==========================================
-  // CLEAR
-  // ==========================================
-
   const clearCombos = () => {
     setSelectedCombos([]);
   };
 
-  // ==========================================
-  // TOTAL QUANTITY
-  // ==========================================
+  // total quantity
 
   const totalQuantity = useMemo(
     () =>
@@ -298,9 +275,7 @@ const BrandCombos = () => {
     [selectedCombos]
   );
 
-  // ==========================================
-  // TOTAL PRICE
-  // ==========================================
+  //  total price
 
   const totalPrice = useMemo(
     () =>
@@ -308,15 +283,13 @@ const BrandCombos = () => {
         (total, combo) =>
           total +
           combo.price *
-            combo.quantity,
+          combo.quantity,
         0
       ),
     [selectedCombos]
   );
 
-  // ==========================================
-  // ADD TO CART
-  // ==========================================
+  // add to cart
 
   const handleAddToCart =
     async () => {
@@ -342,7 +315,7 @@ const BrandCombos = () => {
           ).unwrap();
         }
 
-        router.push("/cart");
+        dispatch(toggleSidebar(true));
       } catch (error) {
         console.log(
           "Add combo to cart error:",
@@ -352,10 +325,6 @@ const BrandCombos = () => {
         setIsAdding(false);
       }
     };
-
-  // ==========================================
-  // UI
-  // ==========================================
 
   return (
     <section className="bg-white">

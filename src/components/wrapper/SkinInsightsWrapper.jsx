@@ -16,10 +16,6 @@ export default function SkinInsightsWrapper() {
     (state) => state.language.value
   );
 
-  // ==========================================
-  // SCROLL TO QUIZ
-  // ==========================================
-
   const scrollToQuiz = () => {
     const quizSection = document.getElementById(
       "skin-quiz-section"
@@ -36,20 +32,24 @@ export default function SkinInsightsWrapper() {
   return (
     <section className="w-full">
 
-      {/* =====================================================
-          HERO BANNER
-      ====================================================== */}
-
       <div className="relative h-[100vh] w-full overflow-hidden bg-[#A08E83]">
 
         {/* Background Image */}
-        <Image
+        {/* <Image
           src={bg}
           alt="Skin analysis"
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
+        /> */}
+        <video
+          src="/videos/skin-analysis.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
 
         {/* Overlay */}

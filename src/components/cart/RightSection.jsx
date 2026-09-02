@@ -1,31 +1,10 @@
 "use client";
 
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
-
-import {
-  useDispatch,
-  useSelector,
-} from "react-redux";
-
-import {
-  ArrowLeft,
-  Loader,
-  Trash,
-} from "lucide-react";
-
+import React, { useCallback, useEffect, useState, } from "react";
+import { useDispatch, useSelector, } from "react-redux";
+import { ArrowLeft, Loader, Trash, } from "lucide-react";
 import { Label } from "@/components/ui/label";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 
 import {
   applyCoupon,
@@ -49,48 +28,28 @@ import { loadRazorpay } from "@/utils/loadRazorpay";
 import CouponCard from "./CouponCard";
 
 
-export default function RightSection({
-  changeStep,
-  step,
+export default function RightSection({ changeStep, step,
 }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // ==========================================
-  // STATE
-  // ==========================================
-
-  const [paymentMethod, setPaymentMethod] =
-    useState("prepaid");
+  const [paymentMethod, setPaymentMethod] = useState("prepaid");
 
   const [coupon, setCoupon] = useState("");
 
-  const [couponApplied, setCouponApplied] =
-    useState(false);
+  const [couponApplied, setCouponApplied] = useState(false);
 
-  const [couponTxt, setCouponTxt] =
-    useState("");
+  const [couponTxt, setCouponTxt] = useState("");
 
-  const [errorTxt, setErrorTxt] =
-    useState("");
+  const [errorTxt, setErrorTxt] = useState("");
 
-  const [disableCoupon, setDisableCoupon] =
-    useState(false);
+  const [disableCoupon, setDisableCoupon] = useState(false);
 
-  const [discount, setDiscount] =
-    useState(0);
+  const [discount, setDiscount] = useState(0);
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const [token, setToken] =
-    useState(null);
-
-
-  // ==========================================
-  // REDUX
-  // ==========================================
-
+  const [token, setToken] = useState(null);
   const cart = useSelector(
     (state) => state.cart.cart
   );
@@ -103,11 +62,6 @@ export default function RightSection({
     (state) => state.address.selectedAddress
   );
 
-
-  // ==========================================
-  // GET TOKEN
-  // ==========================================
-
   useEffect(() => {
     const storedToken =
       localStorage.getItem("token");
@@ -119,11 +73,6 @@ export default function RightSection({
     }
   }, []);
 
-
-  // ==========================================
-  // CART DATA
-  // ==========================================
-
   const items = cart?.products || [];
 
   const subtotal =
@@ -133,7 +82,7 @@ export default function RightSection({
     (acc, item) =>
       acc +
       (item?.size?.price?.mrp || 0) *
-        (item?.quantity || 0),
+      (item?.quantity || 0),
     0
   );
 
@@ -146,10 +95,7 @@ export default function RightSection({
       : 0) -
     Number(discount || 0);
 
-
-  // ==========================================
-  // ONLINE PAYMENT
-  // ==========================================
+  // online payment 
 
   const handlePaymentOnline = async (
     orderData
@@ -164,10 +110,6 @@ export default function RightSection({
     setLoading(true);
 
     try {
-      // --------------------------------------
-      // Load Razorpay
-      // --------------------------------------
-
       const razorpayLoaded =
         await loadRazorpay();
 
@@ -176,11 +118,6 @@ export default function RightSection({
           "Razorpay SDK failed to load. Are you online?"
         );
       }
-
-
-      // --------------------------------------
-      // Create Razorpay Order
-      // --------------------------------------
 
       const { data } = await api.post(
         "/checkout/online-order",
@@ -193,8 +130,6 @@ export default function RightSection({
           },
         }
       );
-
-
       const order = data?.order;
 
       if (!order?.id) {
@@ -203,44 +138,22 @@ export default function RightSection({
         );
       }
 
+      const { amount, currency, id, notes, } = order;
 
-      const {
-        amount,
-        currency,
-        id,
-        notes,
-      } = order;
-
-
-      // --------------------------------------
-      // Shipping Information
-      // --------------------------------------
+      // shipping information
 
       const shipping = notes?.shipping
         ? JSON.parse(notes.shipping)
         : {};
 
-      const userName =
-        shipping.fullName || "Guest";
-
-      const userPhone =
-        shipping.phoneNumber || "";
-
-      const userEmail =
-        shipping.email || "";
-
-
-      // --------------------------------------
-      // Next.js URL
-      // --------------------------------------
+      const userName = shipping.fullName || "Guest";
+      const userPhone = shipping.phoneNumber || "";
+      const userEmail = shipping.email || "";
 
       const callbackUrl =
         `${window.location.origin}/user-dashboard`;
 
-
-      // --------------------------------------
-      // Razorpay Options
-      // --------------------------------------
+      // razorpay option
 
       const options = {
         key:
@@ -282,10 +195,7 @@ export default function RightSection({
         },
       };
 
-
-      // --------------------------------------
       // Open Razorpay
-      // --------------------------------------
 
       const razorpay =
         new window.Razorpay(options);
@@ -300,7 +210,7 @@ export default function RightSection({
 
       toast.error(
         error?.message ||
-          "Something went wrong while processing payment."
+        "Something went wrong while processing payment."
       );
 
     } finally {
@@ -308,11 +218,8 @@ export default function RightSection({
     }
   };
 
-
-  // ==========================================
   // COD ORDER
-  // ==========================================
-
+  
   const handleCodOrder = async (
     orderData
   ) => {
@@ -350,7 +257,7 @@ export default function RightSection({
 
       toast.error(
         error ||
-          "Failed to place order."
+        "Failed to place order."
       );
 
     } finally {
@@ -358,11 +265,8 @@ export default function RightSection({
     }
   };
 
-
-  // ==========================================
   // HANDLE ORDER
-  // ==========================================
-
+  
   const handleOrder = async () => {
     if (
       !selectedAddress ||
@@ -411,10 +315,8 @@ export default function RightSection({
   };
 
 
-  // ==========================================
   // APPLY COUPON
-  // ==========================================
-
+  
   const handleApplyCoupon = async (
     codeFromCard
   ) => {
@@ -447,7 +349,7 @@ export default function RightSection({
         const calculatedDiscount =
           Number(
             totalBeforeDiscount -
-              totalAfterDiscount
+            totalAfterDiscount
           ).toFixed(1);
 
 
@@ -477,7 +379,7 @@ export default function RightSection({
 
       setErrorTxt(
         error ||
-          "Failed to apply coupon."
+        "Failed to apply coupon."
       );
 
     } finally {
@@ -485,10 +387,6 @@ export default function RightSection({
     }
   };
 
-
-  // ==========================================
-  // REMOVE COUPON
-  // ==========================================
 
   const handleRemoveCoupon =
     useCallback(async () => {
@@ -583,7 +481,7 @@ export default function RightSection({
       const savedAmount =
         Number(
           (cart?.totalBeforeDiscount || 0) -
-            (cart?.totalAfterDiscount || 0)
+          (cart?.totalAfterDiscount || 0)
         ).toFixed(1);
 
       setDiscount(
@@ -603,11 +501,6 @@ export default function RightSection({
 
   }, [cart]);
 
-
-  // ==========================================
-  // CLEAR ERROR
-  // ==========================================
-
   useEffect(() => {
     if (!errorTxt && !couponTxt) {
       return;
@@ -626,10 +519,7 @@ export default function RightSection({
     errorTxt,
   ]);
 
-
-  // ==========================================
   // COD LIMIT
-  // ==========================================
 
   useEffect(() => {
     if (
@@ -654,77 +544,35 @@ export default function RightSection({
     cart?.coupon || null;
 
 
-  // ==========================================
-  // UI
-  // ==========================================
-return (
-  <div
-    className="
-      w-full
-      min-w-0
-      self-start
-      rounded-2xl
-      border border-[#E5EEEE]
-      bg-white
-      p-3
-      shadow-[0_10px_35px_rgba(53,84,84,0.07)]
-      sm:p-4
-      lg:p-5
-      xl:p-5
-    "
-  >
-    {/* =====================================================
-        COD NOTICE
-    ====================================================== */}
 
-    {cart?.products?.length > 0 && total >= 1500 && (
-      <div
-        className="
-          mb-4
-          flex
-          items-start
-          gap-2
-          rounded-xl
-          border border-red-200
-          bg-red-50
-          px-3
-          py-2.5
-          sm:items-center
-        "
-      >
-        <span
-          className="
-            mt-1
-            h-2
-            w-2
-            shrink-0
-            rounded-full
+  return (
+    <div className="w-full min-w-0 self-start rounded-2xl border border-[#E5EEEE] bg-white p-3
+      shadow-[0_10px_35px_rgba(53,84,84,0.07)] sm:p-4 lg:p-5 xl:p-5">
+      
+      {/* COD notice */}
+      {cart?.products?.length > 0 && total >= 1500 && (
+        <div className="mb-4 flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2.5 sm:items-center">
+          <span className="mt-1 h-2 w-2 shrink-0 rounded-full
             bg-red-500
-            sm:mt-0
-          "
-        />
+            sm:mt-0 "/>
 
-        <p
-          className="
+          <p
+            className="
             text-[11px]
             leading-4
-            text-red-600
+            text-[#7a1712]
             sm:text-xs
             md:text-sm
           "
-        >
-          Cash on Delivery is unavailable for
-          orders above ₹1500.
-        </p>
-      </div>
-    )}
-
-    {/* =====================================================
-        PAYMENT METHOD
-    ====================================================== */}
-
-    <div
-      className="
+          >
+            Cash on Delivery is unavailable for
+            orders above ₹1500.
+          </p>
+        </div>
+      )}
+      {/* PAYMENT METHOD */}
+      <div
+        className="
         flex
         flex-col
         gap-2.5
@@ -733,29 +581,29 @@ return (
         sm:justify-between
         sm:gap-4
       "
-    >
-      <Label
-        htmlFor="method"
-        className="
+      >
+        <Label
+          htmlFor="method"
+          className="
           text-sm
           font-semibold
           text-[#183838]
           sm:text-base
         "
-      >
-        Payment Method
-      </Label>
+        >
+          Payment Method
+        </Label>
 
-      <Select
-        name="method"
-        value={paymentMethod}
-        onValueChange={(value) =>
-          setPaymentMethod(value)
-        }
-      >
-        <SelectTrigger
-          id="method"
-          className="
+        <Select
+          name="method"
+          value={paymentMethod}
+          onValueChange={(value) =>
+            setPaymentMethod(value)
+          }
+        >
+          <SelectTrigger
+            id="method"
+            className="
             h-10
             w-full
             rounded-xl
@@ -768,45 +616,43 @@ return (
             sm:w-[180px]
             md:w-[190px]
           "
-        >
-          <SelectValue placeholder="Select Payment" />
-        </SelectTrigger>
+          >
+            <SelectValue placeholder="Select Payment" />
+          </SelectTrigger>
 
-        <SelectContent>
-          <SelectItem value="prepaid">
-            Prepaid
-          </SelectItem>
-
-          {(cart?.products?.length === 0 ||
-            total <= 1500) && (
-            <SelectItem value="cod">
-              Cash on Delivery
+          <SelectContent>
+            <SelectItem value="prepaid">
+              Prepaid
             </SelectItem>
-          )}
-        </SelectContent>
-      </Select>
-    </div>
 
-    {/* =====================================================
-        COUPON
-    ====================================================== */}
+            {(cart?.products?.length === 0 ||
+              total <= 1500) && (
+                <SelectItem value="cod">
+                  Cash on Delivery
+                </SelectItem>
+              )}
+          </SelectContent>
+        </Select>
+      </div>
 
-    <div className="mt-5 space-y-3">
-      <Label
-        className="
+      {/* coupon */}
+
+      <div className="mt-5 space-y-3">
+        <Label
+          className="
           text-sm
           font-semibold
           text-[#183838]
           sm:text-base
         "
-      >
-        Apply Coupon
-      </Label>
+        >
+          Apply Coupon
+        </Label>
 
-      {/* Coupon Input */}
+        {/* Coupon Input */}
 
-      <div
-        className="
+        <div
+          className="
           flex
           w-full
           flex-col
@@ -818,16 +664,16 @@ return (
           shadow-sm
           xs:flex-row
         "
-      >
-        <div className="relative min-w-0 flex-1">
-          <input
-            type="text"
-            placeholder="Enter Coupon Code"
-            value={coupon}
-            onChange={(e) =>
-              setCoupon(e.target.value)
-            }
-            className="
+        >
+          <div className="relative min-w-0 flex-1">
+            <input
+              type="text"
+              placeholder="Enter Coupon Code"
+              value={coupon}
+              onChange={(e) =>
+                setCoupon(e.target.value)
+              }
+              className="
               h-10
               w-full
               rounded-lg
@@ -840,13 +686,13 @@ return (
               placeholder:text-[#9AA9A9]
               sm:text-sm
             "
-          />
+            />
 
-          {coupon.length >= 1 && (
-            <Trash
-              size={15}
-              onClick={handleRemoveCoupon}
-              className="
+            {coupon.length >= 1 && (
+              <Trash
+                size={15}
+                onClick={handleRemoveCoupon}
+                className="
                 absolute
                 right-3
                 top-1/2
@@ -854,21 +700,21 @@ return (
                 cursor-pointer
                 text-[#8A9B9B]
                 transition-colors
-                hover:text-red-500
+                hover:text-[#7a1712]
               "
-            />
-          )}
-        </div>
+              />
+            )}
+          </div>
 
-        <button
-          onClick={() =>
-            handleApplyCoupon()
-          }
-          disabled={
-            disableCoupon ||
-            items.length === 0
-          }
-          className="
+          <button
+            onClick={() =>
+              handleApplyCoupon()
+            }
+            disabled={
+              disableCoupon ||
+              items.length === 0
+            }
+            className="
             h-10
             w-full
             shrink-0
@@ -885,27 +731,27 @@ return (
             sm:w-auto
             sm:text-sm
           "
-        >
-          {disableCoupon
-            ? "Applying..."
-            : "Apply"}
-        </button>
-      </div>
+          >
+            {disableCoupon
+              ? "Applying..."
+              : "Apply"}
+          </button>
+        </div>
 
-      {/* Coupon Success */}
+        {/* Coupon Success */}
 
-      {couponApplied && couponTxt && (
-        <div
-          className="
+        {couponApplied && couponTxt && (
+          <div
+            className="
             rounded-xl
             border border-green-200
             bg-green-50
             px-3
             py-2.5
           "
-        >
-          <p
-            className="
+          >
+            <p
+              className="
               text-center
               text-[11px]
               font-medium
@@ -913,103 +759,103 @@ return (
               text-green-600
               sm:text-xs
             "
-          >
-            {couponTxt}
-          </p>
-        </div>
-      )}
+            >
+              {couponTxt}
+            </p>
+          </div>
+        )}
 
-      {/* Coupon Error */}
+        {/* Coupon Error */}
 
-      {errorTxt && (
-        <div
-          className="
+        {errorTxt && (
+          <div
+            className="
             rounded-xl
             border border-red-200
             bg-red-50
             px-3
             py-2.5
           "
-        >
-          <p
-            className="
+          >
+            <p
+              className="
               text-center
               text-[11px]
               font-medium
               leading-4
-              text-red-600
+              text-[#7a1712]
               sm:text-xs
             "
-          >
-            {errorTxt}
-          </p>
-        </div>
-      )}
+            >
+              {errorTxt}
+            </p>
+          </div>
+        )}
 
-      {/* Recommended Coupons */}
+        {/* Recommended Coupons */}
 
-      <div
-        className="
+        <div
+          className="
           grid
           grid-cols-1
           gap-3
           sm:grid-cols-2
         "
-      >
-        {items.length > 0 &&
-        coupons?.length > 0 ? (
-          coupons.map(
-            (couponItem, idx) => (
-              <CouponCard
-                key={
-                  couponItem?._id ||
-                  couponItem?.code ||
-                  idx
-                }
-                code={couponItem.code}
-                offer={
-                  couponItem.discountValue
-                }
-                discountType={
-                  couponItem.discountType
-                }
-                onApply={() =>
-                  handleApplyCoupon(
+        >
+          {items.length > 0 &&
+            coupons?.length > 0 ? (
+            coupons.map(
+              (couponItem, idx) => (
+                <CouponCard
+                  key={
+                    couponItem?._id ||
+                    couponItem?.code ||
+                    idx
+                  }
+                  code={couponItem.code}
+                  offer={
+                    couponItem.discountValue
+                  }
+                  discountType={
+                    couponItem.discountType
+                  }
+                  onApply={() =>
+                    handleApplyCoupon(
+                      couponItem.code
+                    )
+                  }
+                  isApplied={
+                    appliedCoupon?.code ===
                     couponItem.code
-                  )
-                }
-                isApplied={
-                  appliedCoupon?.code ===
-                  couponItem.code
-                }
-              />
+                  }
+                />
+              )
             )
-          )
-        ) : (
-          !loading &&
-          !coupon && (
-            <p
-              className="
+          ) : (
+            !loading &&
+            !coupon && (
+              <p
+                className="
                 col-span-full
                 py-2
                 text-center
                 text-xs
                 text-[#8A9B9B]
               "
-            >
-              No coupons found.
-            </p>
-          )
-        )}
+              >
+                No coupons found.
+              </p>
+            )
+          )}
+        </div>
       </div>
-    </div>
 
-    {/* =====================================================
+      {/* =====================================================
         ORDER SUMMARY
     ====================================================== */}
 
-    <div
-      className="
+      <div
+        className="
         mt-5
         rounded-2xl
         border border-[#E5EEEE]
@@ -1017,11 +863,11 @@ return (
         p-3.5
         sm:p-4
       "
-    >
-      {/* Header */}
+      >
+        {/* Header */}
 
-      <div
-        className="
+        <div
+          className="
           mb-4
           flex
           flex-wrap
@@ -1029,20 +875,20 @@ return (
           justify-between
           gap-2
         "
-      >
-        <h2
-          className="
+        >
+          <h2
+            className="
             text-base
             font-semibold
             text-[#183838]
             sm:text-lg
           "
-        >
-          Order Summary
-        </h2>
+          >
+            Order Summary
+          </h2>
 
-        <span
-          className="
+          <span
+            className="
             rounded-full
             bg-[#3d6d6d]/10
             px-2
@@ -1052,63 +898,63 @@ return (
             text-[#3d6d6d]
             sm:text-[10px]
           "
-        >
-          Secure Checkout
-        </span>
-      </div>
-
-      {/* Price Details */}
-
-      <div className="space-y-3">
-        {/* Cart Total */}
-
-        <div
-          className="
-            flex
-            items-center
-            justify-between
-            gap-4
-            text-xs
-            text-[#607474]
-            sm:text-sm
-          "
-        >
-          <span>Cart Total</span>
-
-          <span className="shrink-0 font-semibold text-[#355454]">
-            ₹ {totalMrp}
+          >
+            Secure Checkout
           </span>
         </div>
 
-        {/* MRP Discount */}
+        {/* Price Details */}
 
-        <div
-          className="
-            flex
-            items-center
-            justify-between
-            gap-4
-            text-xs
-            text-[#607474]
-            sm:text-sm
-          "
-        >
-          <span>Discount on MRP</span>
+        <div className="space-y-3">
+          {/* Cart Total */}
 
-          <span className="shrink-0 font-semibold text-green-600">
-            - ₹{" "}
-            {Math.max(
-              totalMrp - subtotal,
-              0
-            )}
-          </span>
-        </div>
-
-        {/* COD Fee */}
-
-        {paymentMethod === "cod" && (
           <div
             className="
+            flex
+            items-center
+            justify-between
+            gap-4
+            text-xs
+            text-[#607474]
+            sm:text-sm
+          "
+          >
+            <span>Cart Total</span>
+
+            <span className="shrink-0 font-semibold text-[#355454]">
+              ₹ {totalMrp}
+            </span>
+          </div>
+
+          {/* MRP Discount */}
+
+          <div
+            className="
+            flex
+            items-center
+            justify-between
+            gap-4
+            text-xs
+            text-[#607474]
+            sm:text-sm
+          "
+          >
+            <span>Discount on MRP</span>
+
+            <span className="shrink-0 font-semibold text-green-600">
+              - ₹{" "}
+              {Math.max(
+                totalMrp - subtotal,
+                0
+              )}
+            </span>
+          </div>
+
+          {/* COD Fee */}
+
+          {paymentMethod === "cod" && (
+            <div
+              className="
               flex
               items-center
               justify-between
@@ -1117,21 +963,21 @@ return (
               text-[#607474]
               sm:text-sm
             "
-          >
-            <span>
-              Cash on Delivery Fee
-            </span>
+            >
+              <span>
+                Cash on Delivery Fee
+              </span>
 
-            <span className="shrink-0">
-              ₹ {codFee}
-            </span>
-          </div>
-        )}
+              <span className="shrink-0">
+                ₹ {codFee}
+              </span>
+            </div>
+          )}
 
-        {/* Coupon */}
+          {/* Coupon */}
 
-        <div
-          className="
+          <div
+            className="
             flex
             items-start
             justify-between
@@ -1140,77 +986,77 @@ return (
             text-[#607474]
             sm:text-sm
           "
-        >
-          <span className="min-w-0">
-            Coupon Discount{" "}
+          >
+            <span className="min-w-0">
+              Coupon Discount{" "}
 
-            {appliedCoupon && (
-              <span
-                className="
+              {appliedCoupon && (
+                <span
+                  className="
                   break-all
                   text-[10px]
                   text-[#3d6d6d]
                   sm:text-xs
                 "
-              >
-                ({appliedCoupon.code})
-              </span>
-            )}
-          </span>
+                >
+                  ({appliedCoupon.code})
+                </span>
+              )}
+            </span>
 
-          <span className="shrink-0 font-semibold text-green-600">
-            - ₹ {discount}
-          </span>
-        </div>
+            <span className="shrink-0 font-semibold text-green-600">
+              - ₹ {discount}
+            </span>
+          </div>
 
-        <hr className="border-dashed border-[#DCEAEA]" />
+          <hr className="border-dashed border-[#DCEAEA]" />
 
-        {/* Total */}
+          {/* Total */}
 
-        <div
-          className="
+          <div
+            className="
             flex
             items-center
             justify-between
             gap-4
             pt-1
           "
-        >
-          <span
-            className="
+          >
+            <span
+              className="
               text-base
               font-semibold
               text-[#183838]
               sm:text-lg
             "
-          >
-            Total
-          </span>
+            >
+              Total
+            </span>
 
-          <span
-            className="
+            <span
+              className="
               shrink-0
               text-xl
               font-bold
               text-[#3d6d6d]
               sm:text-2xl
             "
-          >
-            ₹ {Math.max(total, 0)}
-          </span>
+            >
+              ₹ {Math.max(total, 0)}
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* =================================================
+        {/* =================================================
           CHECKOUT BUTTON
       ================================================= */}
 
-      <div className="mt-5">
-        {/* STEP 1 */}
+        <div className="mt-5">
+          {/* STEP 1 */}
 
-        {step === 1 && (
-          <button
-            className="
+          {step === 1 && (
+            <button
+              className="
               flex
               h-11
               w-full
@@ -1231,22 +1077,22 @@ return (
               sm:h-12
               sm:text-sm
             "
-            disabled={!items.length}
-            onClick={() =>
-              changeStep(2)
-            }
-          >
-            {items.length > 0
-              ? "Proceed to Checkout"
-              : "Your cart is empty"}
-          </button>
-        )}
+              disabled={!items.length}
+              onClick={() =>
+                changeStep(2)
+              }
+            >
+              {items.length > 0
+                ? "Proceed to Checkout"
+                : "Your cart is empty"}
+            </button>
+          )}
 
-        {/* STEP 2 */}
+          {/* STEP 2 */}
 
-        {step === 2 && (
-          <button
-            className="
+          {step === 2 && (
+            <button
+              className="
               flex
               h-11
               w-full
@@ -1267,33 +1113,33 @@ return (
               sm:h-12
               sm:text-sm
             "
-            disabled={
-              !items.length || loading
-            }
-            onClick={handleOrder}
-          >
-            {loading ? (
-              <span className="flex items-center justify-center gap-2">
-                <Loader className="h-4 w-4 animate-spin" />
-                Processing...
-              </span>
-            ) : items.length > 0 ? (
-              paymentMethod === "cod" ? (
-                "Confirm Order"
+              disabled={
+                !items.length || loading
+              }
+              onClick={handleOrder}
+            >
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Loader className="h-4 w-4 animate-spin" />
+                  Processing...
+                </span>
+              ) : items.length > 0 ? (
+                paymentMethod === "cod" ? (
+                  "Confirm Order"
+                ) : (
+                  "Pay Now"
+                )
               ) : (
-                "Pay Now"
-              )
-            ) : (
-              "Your cart is empty"
-            )}
-          </button>
-        )}
+                "Your cart is empty"
+              )}
+            </button>
+          )}
 
-        {/* Razorpay */}
+          {/* Razorpay */}
 
-        <div className="mt-3 flex justify-center">
-          <div
-            className="
+          <div className="mt-3 flex justify-center">
+            <div
+              className="
               max-w-full
               rounded-lg
               border border-[#E5EEEE]
@@ -1302,17 +1148,17 @@ return (
               py-1.5
               shadow-sm
             "
-          >
-            <img
-              referrerPolicy="origin"
-              src="https://badges.razorpay.com/badge-light.png"
-              className="h-7 max-w-full object-contain sm:h-8"
-              alt="Razorpay"
-            />
+            >
+              <img
+                referrerPolicy="origin"
+                src="https://badges.razorpay.com/badge-light.png"
+                className="h-7 max-w-full object-contain sm:h-8"
+                alt="Razorpay"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
 }

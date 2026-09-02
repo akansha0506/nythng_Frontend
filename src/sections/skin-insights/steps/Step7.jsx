@@ -59,7 +59,7 @@ export default function Step7({
 
       {/* Validation Error */}
       {!answers?.goal?.length && errors?.goal && (
-        <p className="mt-1 text-sm text-red-500">
+        <p className="mt-1 text-sm text-[#7a1712]">
           {errors.goal}
         </p>
       )}

@@ -81,9 +81,9 @@ export default function Step1({
                     `
                     : errors?.ageGroup
                       ? `
-                        border-red-500
+                        border-red-900
                         bg-red-50
-                        text-red-600
+                        text-[#7a1712]
                       `
                       : `
                         border-zinc-200
@@ -102,7 +102,7 @@ export default function Step1({
         {/* Age Error */}
 
         {errors?.ageGroup && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 text-sm text-[#7a1712]">
             {errors.ageGroup}
           </p>
         )}
@@ -145,9 +145,9 @@ export default function Step1({
             `,
             errors?.name
               ? `
-                border-red-500
+                border-red-900
                 bg-red-50
-                focus:ring-red-500
+                focus:ring-red-900
               `
               : `
                 border-zinc-300
@@ -159,7 +159,7 @@ export default function Step1({
         {/* Name Error */}
 
         {errors?.name && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 text-sm text-[#7a1712]">
             {errors.name}
           </p>
         )}
@@ -202,9 +202,9 @@ export default function Step1({
             `,
             errors?.email
               ? `
-                border-red-500
+                border-red-900
                 bg-red-50
-                focus:ring-red-500
+                focus:ring-red-900
               `
               : `
                 border-zinc-300
@@ -216,7 +216,7 @@ export default function Step1({
         {/* Email Error */}
 
         {errors?.email && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 text-sm text-[#7a1712]">
             {errors.email}
           </p>
         )}

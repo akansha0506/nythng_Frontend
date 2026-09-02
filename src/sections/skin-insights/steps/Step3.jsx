@@ -77,7 +77,7 @@ export default function Step3({
 
       {!answers?.concerns?.length &&
         errors?.concerns && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 text-sm text-[#7a1712]">
             {errors.concerns}
           </p>
         )}

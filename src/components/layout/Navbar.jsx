@@ -71,7 +71,7 @@ export default function Navbar() {
       path: "/research-lab",
     },
     {
-      name: "RESULTS",
+      name: "SKIN ANALYSIS",
       path: "/skin-insights",
     },
     {
@@ -95,6 +95,7 @@ export default function Navbar() {
     pathname === "/blogs" ||
     pathname === "/shop" ||
     pathname === "/cart" ||
+    pathname === "/about" ||
     pathname === "/track-order" ||
     pathname === "/build-a-bundle" ||
     pathname === "/refund-policy" ||
@@ -317,7 +318,7 @@ useEffect(() => {
 
           <header
             className={` flex min-h-[56px] xs:min-h-[58px] sm:min-h-[62px] md:min-h-[66px] lg:min-h-[70px] items-center
-              justify-between rounded-[18px] xs:rounded-[20px] sm:rounded-full border px-3 xs:px-3.5 sm:px-5 md:px-6 lg:px-8
+              justify-between rounded-[18px] xs:rounded-[20px] sm:rounded-full border px-3 xs:px-3.5 sm:px-5 md:px-6 xl:px-8
               py-2 sm:py-2.5 lg:py-3.5 transition-all duration-500
               ${showColoredNavbar
                 ? "border-[#3A8B88] bg-[#3A8B88] text-white shadow-lg"
@@ -339,15 +340,12 @@ useEffect(() => {
                 width={150}
                 height={55}
                 priority
-                className=" h-auto w-[88px] xs:w-[96px] sm:w-[110px] md:w-[125px] lg:w-[145px] "
+                className=" h-auto w-[88px] xs:w-[96px] lg:w-[145px] "
               />
             </Link>
 
             {/* desktop navigation */}
-            <nav
-              className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9 text-[11px] xl:text-xs
-                2xl:text-sm font-semibold tracking-[1.5px] "
-            >
+            <nav className="hidden xl:flex items-center gap-4 2xl:gap-7 text-[14px] 2xl:text-sm font-semibold tracking-[1.2px]">
               {navLinks.map((link) => {
                 const isActive =
                   pathname ===
@@ -443,7 +441,7 @@ useEffect(() => {
               </button>
 
               {/* LANGUAGE */}
-              <div className="hidden lg:flex items-center">
+              <div className="hidden xl:flex items-center">
                 <LanguageToggle />
               </div>
 
@@ -591,36 +589,26 @@ useEffect(() => {
               {/* MOBILE MENU BUTTON */}
 
               <button
-                type="button"
-                aria-label={
-                  mobileMenuOpen
-                    ? "Close Menu"
-                    : "Open Menu"
-                }
-                aria-expanded={
-                  mobileMenuOpen
-                }
-                onClick={() =>
-                  setMobileMenuOpen(
-                    (prev) => !prev
-                  )
-                }
-                className="
-                  flex
-                  h-8
-                  w-8
-                  xs:h-9
-                  xs:w-9
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-all
-                  duration-200
-                  hover:bg-white/10
-                  active:scale-95
-                  lg:hidden
-                "
-              >
+                  type="button"
+                  aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+                  aria-expanded={mobileMenuOpen}
+                  onClick={() => setMobileMenuOpen((prev) => !prev)}
+                  className="
+                    flex
+                    h-8
+                    w-8
+                    xs:h-9
+                    xs:w-9
+                    items-center
+                    justify-center
+                    rounded-full
+                    transition-all
+                    duration-200
+                    hover:bg-white/10
+                    active:scale-95
+                    xl:hidden
+                  "
+                >
                 {mobileMenuOpen ? (
                   <X
                     className="
@@ -653,7 +641,7 @@ useEffect(() => {
               overflow-hidden
               transition-all
               duration-300
-              lg:hidden
+              cl:hidden
 
               ${mobileMenuOpen
                 ? "mt-2 h-[calc(100vh-80px)] opacity-100"
@@ -920,7 +908,7 @@ useEffect(() => {
               z-40
               bg-black/40
               backdrop-blur-[1px]
-              lg:hidden
+              xl:hidden
             "
             onClick={() =>
               setMobileMenuOpen(

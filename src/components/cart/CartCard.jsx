@@ -253,7 +253,7 @@ export default function CartCard({
 
               <button
                 type="button"
-                className="bodyText cursor-pointer self-end text-sm duration-300 hover:text-red-500"
+                className="bodyText cursor-pointer self-end text-sm duration-300 hover:text-[#7a1712]"
                 disabled={isRemoving}
                 onClick={() =>
                   handleRemove(

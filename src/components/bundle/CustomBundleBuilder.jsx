@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
 import { getAllProductsForSearch } from "@/redux/slices/productSlice";
-import { addToCart } from "@/redux/slices/cartSlice";
+import { addToCart, toggleSidebar } from "@/redux/slices/cartSlice";
 
 import BundleHeader from "@/sections/bundle/BundleHeader";
 import BundleSearch from "@/sections/bundle/BundleSearch";
@@ -159,9 +159,7 @@ const CustomBundleBuilder = () => {
   const allProducts =
     allProductsForSearch?.data || [];
 
-  // ==========================================
   // FETCH PRODUCTS
-  // ==========================================
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -184,9 +182,7 @@ const CustomBundleBuilder = () => {
     fetchProducts();
   }, [dispatch]);
 
-  // ==========================================
   // PREPARE PRODUCTS
-  // ==========================================
 
   const bundleProducts = useMemo(() => {
     return allProducts
@@ -231,9 +227,7 @@ const CustomBundleBuilder = () => {
       }));
   }, [allProducts]);
 
-  // ==========================================
   // SEARCH
-  // ==========================================
 
   const filteredProducts = useMemo(() => {
     const query =
@@ -249,7 +243,7 @@ const CustomBundleBuilder = () => {
         const productDescription =
           String(
             product.displayDescription ||
-              ""
+            ""
           ).toLowerCase();
 
         const problemsText =
@@ -278,9 +272,7 @@ const CustomBundleBuilder = () => {
     searchQuery,
   ]);
 
-  // ==========================================
   // ADD PRODUCT
-  // ==========================================
 
   const addProduct = (product) => {
     setSelectedProducts((prev) => {
@@ -294,10 +286,10 @@ const CustomBundleBuilder = () => {
         return prev.map((item) =>
           item.id === product.id
             ? {
-                ...item,
-                quantity:
-                  item.quantity + 1,
-              }
+              ...item,
+              quantity:
+                item.quantity + 1,
+            }
             : item
         );
       }
@@ -312,9 +304,7 @@ const CustomBundleBuilder = () => {
     });
   };
 
-  // ==========================================
   // DECREASE
-  // ==========================================
 
   const decreaseProduct = (
     productId
@@ -324,10 +314,10 @@ const CustomBundleBuilder = () => {
         .map((item) =>
           item.id === productId
             ? {
-                ...item,
-                quantity:
-                  item.quantity - 1,
-              }
+              ...item,
+              quantity:
+                item.quantity - 1,
+            }
             : item
         )
         .filter(
@@ -336,9 +326,7 @@ const CustomBundleBuilder = () => {
     );
   };
 
-  // ==========================================
   // REMOVE
-  // ==========================================
 
   const removeProduct = (
     productId
@@ -351,17 +339,13 @@ const CustomBundleBuilder = () => {
     );
   };
 
-  // ==========================================
   // CLEAR
-  // ==========================================
 
   const clearBundle = () => {
     setSelectedProducts([]);
   };
 
-  // ==========================================
-  // TOTAL ITEMS
-  // ==========================================
+  // total item
 
   const totalItems = useMemo(() => {
     return selectedProducts.reduce(
@@ -371,23 +355,19 @@ const CustomBundleBuilder = () => {
     );
   }, [selectedProducts]);
 
-  // ==========================================
   // TOTAL PRICE
-  // ==========================================
 
   const totalPrice = useMemo(() => {
     return selectedProducts.reduce(
       (total, item) =>
         total +
         getSellingPrice(item) *
-          item.quantity,
+        item.quantity,
       0
     );
   }, [selectedProducts]);
 
-  // ==========================================
   // ADD TO CART
-  // ==========================================
 
   const handleAddToCart = async () => {
     if (!selectedProducts.length) {
@@ -413,7 +393,7 @@ const CustomBundleBuilder = () => {
         ).unwrap();
       }
 
-      router.push("/cart");
+      dispatch(toggleSidebar(true));
     } catch (error) {
       console.log(
         "Add bundle to cart error:",

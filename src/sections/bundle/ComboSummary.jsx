@@ -239,7 +239,7 @@ const ComboSummary = ({
 
           {isAdding
             ? "Adding..."
-            : "Buy Now"}
+            : "Proceed to Checkout"}
         </button>
 
       </div>

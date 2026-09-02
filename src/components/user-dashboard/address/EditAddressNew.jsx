@@ -195,7 +195,7 @@ const EditAddressNew = ({
       <div className="p-6 bg-white border rounded md:mt-20 relative overflow-y-auto max-md:max-h-[70vh]">
         <X
           size={24}
-          className="absolute top-4 right-4 text-red-500 cursor-pointer"
+          className="absolute top-4 right-4 text-[#7a1712] cursor-pointer"
           onClick={() => setIsEdit(false)}
         />
 

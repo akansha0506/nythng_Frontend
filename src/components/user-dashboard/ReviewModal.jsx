@@ -327,7 +327,7 @@ const ReviewModal = ({ onClose, product, OrderId }) => {
               >
                 <X
                   onClick={onClose}
-                  className="absolute top-2 right-2 cursor-pointer text-gray-400 hover:text-red-400 duration-150 w-6 h-6 sm:w-7 sm:h-7"
+                  className="absolute top-2 right-2 cursor-pointer text-gray-400 hover:text-red-900 duration-150 w-6 h-6 sm:w-7 sm:h-7"
                 />
 
                 <div className="flex flex-col justify-center items-center mb-4 sm:mb-6 text-center">
@@ -583,7 +583,7 @@ const ReviewModal = ({ onClose, product, OrderId }) => {
                                 }
                                 className="absolute top-1 right-6 bg-white rounded-full p-0.5 shadow hover:bg-red-100 cursor-pointer"
                               >
-                                <X className="w-4 h-4 text-red-500" />
+                                <X className="w-4 h-4 text-[#7a1712]" />
                               </button>
                             </motion.div>
                           )
