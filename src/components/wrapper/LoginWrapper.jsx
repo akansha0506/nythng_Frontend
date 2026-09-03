@@ -92,7 +92,7 @@ export default function LoginForm() {
     }));
   };
 
-// validate token
+  // validate token
 
   const validateForm = () => {
     const newErrors = {};
@@ -197,9 +197,9 @@ export default function LoginForm() {
 
       toast.error(message);
     } finally {
-          setLoading(false);
-        }
-      };
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!token) return;
@@ -216,10 +216,10 @@ export default function LoginForm() {
       <main className="relative box-border h-screen overflow-hidden bg-[#f6fafa] pt-[107px]">
 
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -left-40 top-20 h-[450px] w-[450px] rounded-full bg-[#61b9b9]/10 blur-[130px]"/>
+          <div className="absolute -left-40 top-20 h-[450px] w-[450px] rounded-full bg-[#61b9b9]/10 blur-[130px]" />
 
           <div
-            className="absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-[#d7eeee]/70 blur-[140px]"/>
+            className="absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-[#d7eeee]/70 blur-[140px]" />
         </div>
         <section
           className="relative z-10 mx-auto flex h-full w-full max-w-[1400px] items-center px-4 sm:px-6 lg:px-10 xl:px-14">
@@ -244,7 +244,7 @@ export default function LoginForm() {
 
                 {/* Image Gradient */}
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#123c3d]/75 via-transparent to-transparent "/>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#123c3d]/75 via-transparent to-transparent " />
 
                 <div className="absolute left-6 top-6">
                   <div className="flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-2
@@ -256,7 +256,7 @@ export default function LoginForm() {
                     </span>
                   </div>
                 </div>
-    
+
                 <div className="absolute bottom-0 left-0 w-full p-6 xl:p-8">
 
                   <div className="max-w-lg">
@@ -528,10 +528,9 @@ export default function LoginForm() {
                           top-1/2
                           -translate-y-1/2
                           transition-colors
-                          ${
-                            errors.email
-                              ? "text-red-900"
-                              : "text-gray-400 group-focus-within:text-[#4e9c9c]"
+                          ${errors.email
+                            ? "text-red-900"
+                            : "text-gray-400 group-focus-within:text-[#4e9c9c]"
                           }
                         `}
                       />
@@ -564,10 +563,9 @@ export default function LoginForm() {
                           duration-200
                           placeholder:text-gray-400
                           sm:text-base
-                          ${
-                            errors.email
-                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
-                              : "border-[#dce7e7] hover:border-[#b9d5d5] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                          ${errors.email
+                            ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                            : "border-[#dce7e7] hover:border-[#b9d5d5] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
                           }
                           focus:ring-4
                         `}
@@ -624,10 +622,9 @@ export default function LoginForm() {
                           top-1/2
                           -translate-y-1/2
                           transition-colors
-                          ${
-                            errors.password
-                              ? "text-red-900"
-                              : "text-gray-400 group-focus-within:text-[#4e9c9c]"
+                          ${errors.password
+                            ? "text-red-900"
+                            : "text-gray-400 group-focus-within:text-[#4e9c9c]"
                           }
                         `}
                       />
@@ -664,10 +661,9 @@ export default function LoginForm() {
                           duration-200
                           placeholder:text-gray-400
                           sm:text-base
-                          ${
-                            errors.password
-                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
-                              : "border-[#dce7e7] hover:border-[#b9d5d5] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                          ${errors.password
+                            ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                            : "border-[#dce7e7] hover:border-[#b9d5d5] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
                           }
                           focus:ring-4
                         `}

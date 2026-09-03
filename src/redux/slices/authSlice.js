@@ -58,9 +58,9 @@ export const loginUser = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(
         error?.response?.data?.message ||
-          error?.response?.data?.error ||
-          error?.response?.data?.msg ||
-          "Invalid credentials"
+        error?.response?.data?.error ||
+        error?.response?.data?.msg ||
+        "Invalid credentials"
       );
     }
   }
@@ -75,6 +75,37 @@ export const resendOtp = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(
         error?.response.data.message || "Failed to resend OTP"
+      );
+    }
+  }
+);
+
+export const requestPhoneOtp = createAsyncThunk(
+  "auth/requestPhoneOtp",
+  async ({ phone, fullName }, { rejectWithValue }) => {
+    try {
+      const res = await api.post("/auth/phone/request-otp", {
+        phone,
+        fullName,
+      });
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(
+        error?.response?.data?.message || "Failed to send WhatsApp OTP"
+      );
+    }
+  }
+);
+
+export const verifyPhoneOtp = createAsyncThunk(
+  "auth/verifyPhoneOtp",
+  async ({ phone, otp }, { rejectWithValue }) => {
+    try {
+      const res = await api.post("/auth/phone/verify-otp", { phone, otp });
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(
+        error?.response?.data?.message || "Failed to verify WhatsApp OTP"
       );
     }
   }
@@ -233,6 +264,11 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(verifyPhoneOtp.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isAuthenticated = true;
+        localStorage.setItem("token", action.payload.token);
       })
       .addCase(verifyToken.pending, (state) => {
         state.loading = true;

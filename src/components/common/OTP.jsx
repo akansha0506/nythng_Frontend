@@ -92,7 +92,7 @@ const Otp = ({
       if (res?.success && res?.isVerified) {
         toast.success(
           res.message ||
-            "OTP verified successfully"
+          "OTP verified successfully"
         );
 
         // Close OTP modal
@@ -135,8 +135,8 @@ const Otp = ({
     } catch (error) {
       setError(
         error?.message ||
-          error ||
-          "OTP verification failed"
+        error ||
+        "OTP verification failed"
       );
     } finally {
       setLoading(false);
@@ -165,14 +165,14 @@ const Otp = ({
       if (res?.success) {
         toast.success(
           res.message ||
-            "OTP resent successfully"
+          "OTP resent successfully"
         );
       }
     } catch (error) {
       setError(
         error?.message ||
-          error ||
-          "Failed to resend OTP"
+        error ||
+        "Failed to resend OTP"
       );
 
       console.error(
@@ -304,8 +304,8 @@ const Otp = ({
           {resendTimer > 0
             ? `Resend in ${resendTimer}s`
             : resent
-            ? "Sent!"
-            : "Resend"}
+              ? "Sent!"
+              : "Resend"}
 
         </button>
 

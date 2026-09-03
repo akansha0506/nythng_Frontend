@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import {
@@ -32,17 +32,17 @@ function Cart() {
   const items = cart?.products || [];
 
   useEffect(() => {
-  if (items.length > 0) {
-    dispatch(recommendProducts());
-  }
-}, [dispatch, items.length]);
+    if (items.length > 0) {
+      dispatch(recommendProducts());
+    }
+  }, [dispatch, items.length]);
 
   const changeStep = (newStep) => {
     if (!items.length && newStep === 2) return;
 
     setStep(newStep);
   };
-  
+
 
   return (
     <main
@@ -58,7 +58,7 @@ function Cart() {
          sm:block " />
 
       <div className="relative mx-auto w-full max-w-[1440px]">
-      {/* page header */}
+        {/* page header */}
         <div className="mb-5 flex flex-col gap-4 sm:mb-6 md:gap-5 lg:mb-7 lg:flex-row lg:items-end lg:justify-between">
           {/* LEFT */}
 
@@ -102,7 +102,7 @@ function Cart() {
           </div>
         </div>
 
-    {/* checkout stepper */}
+        {/* checkout stepper */}
 
         <div
           className="mb-5 rounded-[20px] border border-[#E5EEEE] bg-white p-3 shadow-[0_10px_35px_rgba(53,84,84,0.06)]
@@ -118,10 +118,9 @@ function Cart() {
               <div
                 className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300
                   sm:h-9 sm:w-9
-                  ${
-                    step === 1
-                      ? "bg-[#61b9b9] text-white shadow-[0_7px_20px_rgba(97,185,185,0.25)]"
-                      : "bg-[#EAF7F7] text-[#61b9b9]"
+                  ${step === 1
+                    ? "bg-[#61b9b9] text-white shadow-[0_7px_20px_rgba(97,185,185,0.25)]"
+                    : "bg-[#EAF7F7] text-[#61b9b9]"
                   }
                 `}
               >
@@ -134,10 +133,9 @@ function Cart() {
               <div className="hidden text-left xs:block sm:block">
                 <p
                   className={`text-[9px] font-semibold uppercase tracking-[1px] sm:text-[10px] sm:tracking-[1.5px]
-                    ${
-                      step === 1
-                        ? "text-[#355454]"
-                        : "text-[#8A9B9B]"
+                    ${step === 1
+                      ? "text-[#355454]"
+                      : "text-[#8A9B9B]"
                     }
                   `}
                 >
@@ -176,10 +174,9 @@ function Cart() {
               <div
                 className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 sm:h-9
                   sm:w-9
-                  ${
-                    step === 2
-                      ? "bg-[#61b9b9] text-white shadow-[0_7px_20px_rgba(97,185,185,0.25)]"
-                      : "bg-[#EDF4F4] text-[#8A9B9B]"
+                  ${step === 2
+                    ? "bg-[#61b9b9] text-white shadow-[0_7px_20px_rgba(97,185,185,0.25)]"
+                    : "bg-[#EDF4F4] text-[#8A9B9B]"
                   }
                 `}
               >
@@ -192,10 +189,9 @@ function Cart() {
               <div className="hidden text-left sm:block">
                 <p
                   className={`text-[9px] font-semibold uppercase tracking-[1px] sm:text-[10px] sm:tracking-[1.5px]
-                    ${
-                      step === 2
-                        ? "text-[#355454]"
-                        : "text-[#8A9B9B]"
+                    ${step === 2
+                      ? "text-[#355454]"
+                      : "text-[#8A9B9B]"
                     }
                   `}
                 >
@@ -216,7 +212,7 @@ function Cart() {
             lg:grid-cols-[minmax(0,1.55fr)_minmax(300px,0.9fr)] lg:gap-7
             xl:grid-cols-[minmax(0,1.6fr)_minmax(340px,0.85fr)]
           ">
-         {/* left section */}
+          {/* left section */}
 
           <div className="min-w-0">
             {/* ================= CART STEP ================= */}
@@ -387,10 +383,9 @@ function Cart() {
                         pr-0.5
                         sm:space-y-4
                         sm:pr-1
-                        ${
-                          recommendedProducts?.length > 0
-                            ? "lg:max-h-[55vh] lg:overflow-y-auto"
-                            : "lg:max-h-[68vh] lg:overflow-y-auto"
+                        ${recommendedProducts?.length > 0
+                          ? "lg:max-h-[55vh] lg:overflow-y-auto"
+                          : "lg:max-h-[68vh] lg:overflow-y-auto"
                         }
                       `}
                     >

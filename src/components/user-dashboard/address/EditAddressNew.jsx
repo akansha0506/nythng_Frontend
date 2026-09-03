@@ -9,6 +9,7 @@ import {
   editAddress,
   resetAddressState,
 } from "@/redux/slices/addressSlice";
+import { updateMe } from "@/redux/slices/authSlice";
 
 import ScrollLock from "@/utils/ScrollLock";
 
@@ -107,6 +108,10 @@ const EditAddressNew = ({
 
     try {
       await dispatch(editAddress({ formData })).unwrap();
+
+      await dispatch(
+        updateMe({ fullName: formData.fullName })
+      ).unwrap();
 
       toast.success(message);
 

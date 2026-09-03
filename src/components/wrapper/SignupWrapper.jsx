@@ -759,7 +759,7 @@ export default function SignupForm() {
   } = state;
 
   // HANDLE FIELD CHANGE
-  
+
   const handleFieldChange = (type, value) => {
     setState({
       type,
@@ -855,8 +855,8 @@ export default function SignupForm() {
 
       toast.error(
         error?.message ||
-          error ||
-          "Signup failed"
+        error ||
+        "Signup failed"
       );
     } finally {
       setLoading(false);
@@ -866,10 +866,10 @@ export default function SignupForm() {
   return (
     <>
       <main className="relative box-border h-screen overflow-hidden bg-[#f7fbfb] pt-[107px]">
-    
+
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -left-40 top-10 h-[400px] w-[400px] rounded-full bg-[#61b9b9]/10 blur-[120px]" />
-          <div className="absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#d9eeee]/70 blur-[130px] "/>
+          <div className="absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#d9eeee]/70 blur-[130px] " />
         </div>
 
         <section className="relative z-10 mx-auto flex h-full w-full max-w-[1400px] items-center px-4 sm:px-6 lg:px-10 xl:px-14">
@@ -879,7 +879,7 @@ export default function SignupForm() {
 
               {/* Decorative Border */}
 
-              <div className="absolute -left-3 -top-3 h-full w-full rounded-[30px] border border-[#61b9b9]/20"/>
+              <div className="absolute -left-3 -top-3 h-full w-full rounded-[30px] border border-[#61b9b9]/20" />
 
               {/* Image Container */}
 
@@ -1185,10 +1185,9 @@ export default function SignupForm() {
                             left-3.5
                             top-1/2
                             -translate-y-1/2
-                            ${
-                              errors.fullName
-                                ? "text-red-900"
-                                : "text-gray-400"
+                            ${errors.fullName
+                              ? "text-red-900"
+                              : "text-gray-400"
                             }
                           `}
                         />
@@ -1218,10 +1217,9 @@ export default function SignupForm() {
                             outline-none
                             transition-all
                             placeholder:text-gray-400
-                            ${
-                              errors.fullName
-                                ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
-                                : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                            ${errors.fullName
+                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                              : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
                             }
                             focus:ring-4
                           `}
@@ -1261,10 +1259,9 @@ export default function SignupForm() {
                             left-3.5
                             top-1/2
                             -translate-y-1/2
-                            ${
-                              errors.phoneNumber
-                                ? "text-red-900"
-                                : "text-gray-400"
+                            ${errors.phoneNumber
+                              ? "text-red-900"
+                              : "text-gray-400"
                             }
                           `}
                         />
@@ -1295,10 +1292,9 @@ export default function SignupForm() {
                             outline-none
                             transition-all
                             placeholder:text-gray-400
-                            ${
-                              errors.phoneNumber
-                                ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
-                                : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                            ${errors.phoneNumber
+                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                              : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
                             }
                             focus:ring-4
                           `}
@@ -1341,10 +1337,9 @@ export default function SignupForm() {
                           left-3.5
                           top-1/2
                           -translate-y-1/2
-                          ${
-                            errors.email
-                              ? "text-red-900"
-                              : "text-gray-400"
+                          ${errors.email
+                            ? "text-red-900"
+                            : "text-gray-400"
                           }
                         `}
                       />
@@ -1374,10 +1369,9 @@ export default function SignupForm() {
                           outline-none
                           transition-all
                           placeholder:text-gray-400
-                          ${
-                            errors.email
-                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
-                              : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                          ${errors.email
+                            ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                            : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
                           }
                           focus:ring-4
                         `}
@@ -1419,10 +1413,9 @@ export default function SignupForm() {
                           left-3.5
                           top-1/2
                           -translate-y-1/2
-                          ${
-                            errors.password
-                              ? "text-red-900"
-                              : "text-gray-400"
+                          ${errors.password
+                            ? "text-red-900"
+                            : "text-gray-400"
                           }
                         `}
                       />
@@ -1456,10 +1449,9 @@ export default function SignupForm() {
                           outline-none
                           transition-all
                           placeholder:text-gray-400
-                          ${
-                            errors.password
-                              ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
-                              : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
+                          ${errors.password
+                            ? "border-red-900 focus:border-red-900 focus:ring-red-400/10"
+                            : "border-[#dce7e7] focus:border-[#61b9b9] focus:ring-[#61b9b9]/10"
                           }
                           focus:ring-4
                         `}
