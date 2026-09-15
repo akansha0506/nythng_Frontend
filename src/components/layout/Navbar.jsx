@@ -390,18 +390,7 @@ useEffect(() => {
             </nav>
 
             <div
-              className="
-                flex
-                shrink-0
-                items-center
-                gap-2
-                xs:gap-2.5
-                sm:gap-3.5
-                md:gap-4
-                lg:gap-5
-                text-white
-              "
-            >
+              className="flex shrink-0 items-center gap-2 xs:gap-2.5 sm:gap-3.5 md:gap-4 lg:gap-5 text-white">
               {/* SEARCH */}
 
               <button
@@ -410,34 +399,10 @@ useEffect(() => {
                 onClick={
                   handleSearchOpen
                 }
-                className="
-                  flex
-                  h-8
-                  w-8
-                  xs:h-9
-                  xs:w-9
-                  sm:h-10
-                  sm:w-10
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-all
-                  duration-200
-                  hover:bg-white/10
-                  hover:text-white/80
-                  active:scale-95
-                "
-              >
-                <Search
-                  className="
-                    h-[17px]
-                    w-[17px]
-                    xs:h-[18px]
-                    xs:w-[18px]
-                    sm:h-5
-                    sm:w-5
-                  "
-                />
+                className="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition-all 
+                    duration-200 hover:bg-white/10 hover:text-white/80 active:scale-95">
+
+                <Search className="h-[17px] w-[17px] xs:h-[18px] xs:w-[18px] sm:h-5 sm:w-5" />
               </button>
 
               {/* LANGUAGE */}
@@ -450,31 +415,9 @@ useEffect(() => {
               <button
                 type="button"
                 aria-label="Wishlist"
-                className="
-                  hidden
-                  sm:flex
-                  h-9
-                  w-9
-                  md:h-10
-                  md:w-10
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-all
-                  duration-200
-                  hover:bg-white/10
-                  hover:text-white/80
-                  active:scale-95
-                "
-              >
-                <Heart
-                  className="
-                    h-[18px]
-                    w-[18px]
-                    md:h-5
-                    md:w-5
-                  "
-                />
+                className="hidden sm:flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-full transition-all
+                  duration-200 hover:bg-white/10 hover:text-white/80 active:scale-95">
+                <Heart className="h-[18px] w-[18px] md:h-5 md:w-5"/>
               </button>
 
               {/* ACCOUNT */}
@@ -485,34 +428,9 @@ useEffect(() => {
                 onClick={
                   closeMobileMenu
                 }
-                className="
-                  flex
-                  h-8
-                  w-8
-                  xs:h-9
-                  xs:w-9
-                  sm:h-10
-                  sm:w-10
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-all
-                  duration-200
-                  hover:bg-white/10
-                  hover:text-white/80
-                  active:scale-95
-                "
-              >
-                <User
-                  className="
-                    h-[17px]
-                    w-[17px]
-                    xs:h-[18px]
-                    xs:w-[18px]
-                    sm:h-5
-                    sm:w-5
-                  "
-                />
+                className="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition-all
+                  duration-200 hover:bg-white/10 hover:text-white/80 active:scale-95">
+                <User className="h-[17px] w-[17px] xs:h-[18px] xs:w-[18px] sm:h-5 sm:w-5"/>
               </Link>
 
               {/* CART */}
@@ -523,47 +441,16 @@ useEffect(() => {
                 onClick={() =>
                   handleCartToggle(true)
                 }
-                className="
-                  relative
-                  flex
-                  h-8
-                  w-8
-                  xs:h-9
-                  xs:w-9
-                  sm:h-10
-                  sm:w-10
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-all
-                  duration-200
-                  hover:bg-white/10
-                  active:scale-95
-                "
-              >
+                className="relative flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full
+                  transition-all duration-200 hover:bg-white/10 active:scale-95">
                 {cartItemCount > 0 && (
                   <span
-                    className="
-                      absolute
+                    className="absolute
                       -right-0.5
                       -top-0.5
-                      flex
-                      h-[17px]
-                      min-w-[17px]
-                      xs:h-[18px]
-                      xs:min-w-[18px]
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[#a52a2a]
-                      px-1
-                      text-[9px]
-                      xs:text-[10px]
-                      font-bold
-                      text-white
-                      shadow-sm
-                    "
-                  >
+                      flex h-[17px] min-w-[17px] xs:h-[18px]
+                      xs:min-w-[18px] items-center justify-center rounded-full bg-[#a52a2a] px-1 text-[9px] xs:text-[10px] 
+                      font-bold text-white shadow-sm">
                     {cartItemCount > 99
                       ? "99+"
                       : cartItemCount}
@@ -579,11 +466,7 @@ useEffect(() => {
 
                 <ShoppingCartIcon
                   size={21}
-                  className="
-                    hidden
-                    xs:block
-                  "
-                />
+                  className="hidden xs:block"/>
               </button>
 
               {/* MOBILE MENU BUTTON */}

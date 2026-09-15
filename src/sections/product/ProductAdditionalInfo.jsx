@@ -136,9 +136,11 @@ const ProductAdditionalInfo = ({ info }) => {
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#61b9b9]" />
             </div>
 
-            <p className="mt-2 text-[13px] leading-[1.6] text-[#708484]">
-              {info.ingredients}
-            </p>
+         <p className="mt-2 text-[13px] leading-[1.6] text-[#708484]">
+            {Array.isArray(info.ingredients)
+              ? info.ingredients.join(", ")
+              : info.ingredients}
+          </p>
           </div>
         )}
 

@@ -43,16 +43,9 @@ function ProductDescription({ product }) {
   });
 
   const [hovering, setHovering] = useState(false);
-
   const [hoverSide, setHoverSide] = useState(null);
-
   const [openDetail, setOpenDetail] = useState(null);
-
   const swiperRef = useRef(null);
-
-  /*
-   * Mouse movement for gallery navigation
-   */
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
 
@@ -76,23 +69,14 @@ function ProductDescription({ product }) {
   const handleMouseLeave = () => {
     setHovering(false);
   };
-
-  /*
-   * Quantity
-   */
   const increment = () => {
     setQuantity((prev) => prev + 1);
   };
-
   const decrement = () => {
     setQuantity((prev) =>
       prev > 1 ? prev - 1 : 1
     );
   };
-
-  /*
-   * Add to cart
-   */
   const handleAddToCart = () => {
     try {
       dispatch(
@@ -109,9 +93,7 @@ function ProductDescription({ product }) {
     }
   };
 
-  /*
-   * Share product
-   */
+  // share product
   const handleShare = async () => {
     if (navigator.share) {
       try {

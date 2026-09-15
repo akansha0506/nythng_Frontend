@@ -17,12 +17,12 @@ function Research() {
       image: card3,
       title: "Formulated By Experts",
       description:
-        "Everything Is Designed By Chemists, Pharmacists, And Skin Scientists.",
+        "Anything we make is designed by skincare experts.",
     },
     {
       image: card4,
       title: "No Filler Ingredients",
-      description: "Every Ingredient Has A Reason.",
+      description: "Ingredients Chosen for Efficacy, Beyond Trends.",
     },
   ];
 

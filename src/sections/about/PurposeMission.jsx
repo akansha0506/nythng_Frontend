@@ -59,9 +59,10 @@ export default function PurposeMissionSection() {
               </h2>
 
               <p className="mt-4 text-medium leading-relaxed bodyText">
-                To redefine the skincare industry by replacing hype and
-                misinformation with truth, quality, and self-worth — making
-                beauty a path to personal growth.
+               To redefine the skincare industry by replacing hype and misinformation with truth, quality, 
+               and self-worth — making beauty a path to personal growth, not just appearance. Nythng helps you achieve 
+               your best version.
+
               </p>
             </div>
 
@@ -76,8 +77,8 @@ export default function PurposeMissionSection() {
               </h2>
 
               <p className="mt-4 text-medium leading-relaxed bodyText">
-                We aim to create a world where skincare is no longer confusing,
-                costly, or superficial but an empowering daily ritual.
+                We aim to create a world where skincare is no longer confusing, costly, or superficial — but an honest, 
+                empowering daily ritual for every ambitious individual rising toward their best self.
               </p>
             </div>
 
