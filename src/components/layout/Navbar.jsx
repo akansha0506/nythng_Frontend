@@ -476,48 +476,18 @@ useEffect(() => {
                   aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
                   aria-expanded={mobileMenuOpen}
                   onClick={() => setMobileMenuOpen((prev) => !prev)}
-                  className="
-                    flex
-                    h-8
-                    w-8
-                    xs:h-9
-                    xs:w-9
-                    items-center
-                    justify-center
-                    rounded-full
-                    transition-all
-                    duration-200
-                    hover:bg-white/10
-                    active:scale-95
-                    xl:hidden
-                  "
-                >
+                  className="flex h-8 w-8 xs:h-9 xs:w-9 items-center justify-center rounded-full transition-all
+                    duration-200 hover:bg-white/10 active:scale-95 xl:hidden">
                 {mobileMenuOpen ? (
-                  <X
-                    className="
-                      h-5
-                      w-5
-                      sm:h-[22px]
-                      sm:w-[22px]
-                    "
-                  />
+                  <X className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
                 ) : (
-                  <Menu
-                    className="
-                      h-5
-                      w-5
-                      sm:h-[22px]
-                      sm:w-[22px]
-                    "
-                  />
+                  <Menu className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
                 )}
               </button>
             </div>
           </header>
 
-          {/* ==================================================
-              MOBILE MENU
-          ================================================== */}
+        {/* mobile menu */}
 
           <div
             className={`
