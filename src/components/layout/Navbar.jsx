@@ -422,16 +422,18 @@ useEffect(() => {
 
               {/* ACCOUNT */}
 
-              <Link
-                href={accountRoute}
-                aria-label="Account"
-                onClick={
-                  closeMobileMenu
-                }
-                className="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition-all
-                  duration-200 hover:bg-white/10 hover:text-white/80 active:scale-95">
-                <User className="h-[17px] w-[17px] xs:h-[18px] xs:w-[18px] sm:h-5 sm:w-5"/>
-              </Link>
+              {user && (
+                <Link
+                  href={accountRoute}
+                  aria-label="Account"
+                  onClick={
+                    closeMobileMenu
+                  }
+                  className="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full transition-all
+                    duration-200 hover:bg-white/10 hover:text-white/80 active:scale-95">
+                  <User className="h-[17px] w-[17px] xs:h-[18px] xs:w-[18px] sm:h-5 sm:w-5"/>
+                </Link>
+              )}
 
               {/* CART */}
 
@@ -574,16 +576,16 @@ useEffect(() => {
               </div>
 
               <div
-                className="
+                className={`
                   mt-4
                   grid
-                  grid-cols-3
+                  ${user ? "grid-cols-3" : "grid-cols-2"}
                   gap-2
                   border-t
                   border-white/15
                   pt-4
                   sm:gap-3
-                "
+                `}
               >
                 {/* Search */}
 
@@ -617,33 +619,35 @@ useEffect(() => {
 
                 {/* Account */}
 
-                <Link
-                  href={accountRoute}
-                  onClick={
-                    closeMobileMenu
-                  }
-                  className="
-                    flex
-                    min-h-[50px]
-                    flex-col
-                    items-center
-                    justify-center
-                    gap-1
-                    rounded-xl
-                    bg-white/10
-                    text-white
-                    transition
-                    hover:bg-white/15
-                  "
-                >
-                  <User
-                    size={18}
-                  />
+                {user && (
+                  <Link
+                    href={accountRoute}
+                    onClick={
+                      closeMobileMenu
+                    }
+                    className="
+                      flex
+                      min-h-[50px]
+                      flex-col
+                      items-center
+                      justify-center
+                      gap-1
+                      rounded-xl
+                      bg-white/10
+                      text-white
+                      transition
+                      hover:bg-white/15
+                    "
+                  >
+                    <User
+                      size={18}
+                    />
 
-                  <span className="text-[9px] sm:text-[10px]">
-                    Account
-                  </span>
-                </Link>
+                    <span className="text-[9px] sm:text-[10px]">
+                      Account
+                    </span>
+                  </Link>
+                )}
 
                 {/* Cart */}
 

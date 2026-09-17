@@ -74,7 +74,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
    dispatch(logoutUser());
    dispatch(resetAllState());
 
-  router.push("/auth/login");
+  router.push("/");
 };
 
   const handleAvatar = (name) => {

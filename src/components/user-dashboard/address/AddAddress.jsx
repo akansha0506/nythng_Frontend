@@ -377,7 +377,7 @@ const AddAddress = ({ setActiveAdd }) => {
           >
             <div>
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Full Name
+                Full Name <span className="text-red-500">*</span>
               </Label>
 
               <Input
@@ -391,9 +391,9 @@ const AddAddress = ({ setActiveAdd }) => {
             </div>
 
             <div>
-              <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Phone Number
-              </Label>
+             <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+              Phone Number <span className="text-red-500">*</span>
+            </Label>
 
               <Input
                 type="text"
@@ -425,7 +425,7 @@ const AddAddress = ({ setActiveAdd }) => {
           >
             <div>
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Address Line 1
+                Address Line 1 <span className="text-red-500">*</span>
               </Label>
 
               <Input
@@ -442,7 +442,7 @@ const AddAddress = ({ setActiveAdd }) => {
 
             <div>
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Address Line 2
+                Address Line 2 <span className="text-red-500">*</span>
               </Label>
 
               <Input
@@ -474,7 +474,7 @@ const AddAddress = ({ setActiveAdd }) => {
           >
             <div>
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Landmark
+                Landmark <span className="text-red-500">*</span>
               </Label>
 
               <Input
@@ -487,10 +487,9 @@ const AddAddress = ({ setActiveAdd }) => {
             </div>
 
             <div>
-              <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Address Type
-              </Label>
-
+            <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+              Address Type <span className="text-red-500">*</span>
+            </Label>
               <Input
                 type="text"
                 name="type"
@@ -520,7 +519,7 @@ const AddAddress = ({ setActiveAdd }) => {
             {/* Postal Code */}
             <div className="relative">
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Postal Code
+                Postal Code <span className="text-red-500">*</span>
               </Label>
 
               <div
@@ -552,7 +551,7 @@ const AddAddress = ({ setActiveAdd }) => {
             {/* City */}
             <div>
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                City
+                City <span className="text-red-500">*</span>
               </Label>
 
               <Select
@@ -593,7 +592,7 @@ const AddAddress = ({ setActiveAdd }) => {
             {/* State */}
             <div>
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                State
+                State <span className="text-red-500">*</span>
               </Label>
 
               <Select
@@ -635,7 +634,7 @@ const AddAddress = ({ setActiveAdd }) => {
             {/* Country */}
             <div>
               <Label className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                Country
+                Country <span className="text-red-500">*</span>
               </Label>
 
               <Input
